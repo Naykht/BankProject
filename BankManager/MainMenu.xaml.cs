@@ -27,7 +27,8 @@ namespace BankManager
         public MainMenu()
         {
             InitializeComponent();
-            UpdateList();            
+            UpdateList();
+            UpdateCombo();
         }
         public void UpdateList()
         {
@@ -53,8 +54,9 @@ namespace BankManager
                 "Closed",
                 "Expired"
             };
-            loanCombo.ItemsSource = sample;
-            loanCombo.SelectedItem = "All";
+            choiceLoan.ItemsSource = sample;
+            
+            choiceLoan.SelectedItem = "All";
         }
         private void DateLoan_Click(object sender, RoutedEventArgs e)
         {
@@ -62,7 +64,7 @@ namespace BankManager
             if (lStartBox.SelectedDate != null && lEndBox.SelectedDate != null && lStartBox.SelectedDate < lEndBox.SelectedDate)
             {
                 loanList.ItemsSource = null;
-                loanList.ItemsSource = lo.DateLoan(lStartBox.SelectedDate ?? now, lEndBox.SelectedDate ?? now, loanCombo.SelectedItem as string);
+                loanList.ItemsSource = lo.DateLoan(lStartBox.SelectedDate ?? now, lEndBox.SelectedDate ?? now, choiceLoan.SelectedItem as string);
             }
             else
                 MessageBox.Show("Please select an arbitrary period");
@@ -127,12 +129,19 @@ namespace BankManager
         private void MakeDep_Click(object sender, RoutedEventArgs e)
         {
             var winAddDep = new AddDeposit();
-            
+            winAddDep.Show();
         }
 
         private void MakeLoan_Click(object sender, RoutedEventArgs e)
         {
-
+            var winAddLoan = new AddLoanWindow();
+            winAddLoan.UpdateLoan += UpdateLoan;
+            winAddLoan.Show();
+        }
+        public void UpdateLoan(List<Loan> loads)
+        {
+            loanList.ItemsSource = null;
+            loanList.ItemsSource = loads;
         }
     }
 }

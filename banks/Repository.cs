@@ -27,7 +27,7 @@ namespace banks
         List<Loan> Loans { get; }
         List<Loan> DateLoan(DateTime start, DateTime end, string c);
         List<Loan> AccLoan(int id);
-        void AddLoan(int id, decimal am, DateTime start, DateTime end, decimal per);
+        void AddLoan(int id, decimal am, DateTime end, decimal per);
 
     }
     public interface IDeposit
@@ -81,7 +81,7 @@ namespace banks
                 Phone = phone,
                 Address = address,
                 Email = email,
-                Id = Clients.Max(u => u.Id)
+                Id = Clients.Max(u => u.Id) + 1
             };
             Clients.Add(cl);
             SaveData();
@@ -102,13 +102,13 @@ namespace banks
             Clients = Clients.OrderBy(u => u.Id).ToList();
             SaveData();
         }
-        public void AddLoan(int id, decimal am, DateTime start, DateTime end, decimal percent)
+        public void AddLoan(int id, decimal am, DateTime end, decimal percent)
         {
             var lo = new Loan
             {
                 LoanId = Loans.Max(u => u.LoanId) + 1,
                 Amount = am,
-                StartDate = start,
+                StartDate = DateTime.Now,
                 EndDate = end,
                 AccId = id,
                 Status = "Active",

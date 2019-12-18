@@ -11,7 +11,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
+  
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -21,9 +21,9 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">Account Id</TextBlock>
         <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">Amount</TextBlock>
-        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">Start Date</TextBlock>
-        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">End Date</TextBlock>
-        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">Percent</TextBlock>
+    
+        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">End Date</TextBlock>
+        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">Percent</TextBlock>
 
         <ComboBox Name="clientCombo" Grid.Column="1" Margin="6">
             <ComboBox.ItemTemplate>
@@ -34,10 +34,9 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <DatePicker Grid.Row="2" Grid.Column="1" Name="StartBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"></DatePicker>
-        <DatePicker Grid.Row="3" Grid.Column="1" Name="EndBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"></DatePicker>
+        <DatePicker Grid.Row="2" Grid.Column="1" Name="EndBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"></DatePicker>
         <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="amountBox" Width="180"></TextBox>
-        <TextBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="percentBox" Width="180"></TextBox>
-        <Button Grid.Row="5" Grid.ColumnSpan="2" Width="150" Height="25" Click="MakeLoan_Click">Add Client</Button>
+        <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="percentBox" Width="180"></TextBox>
+        <Button Grid.Row="4" Grid.ColumnSpan="2" Width="150" Height="25" Click="MakeLoan_Click">Make A Loan</Button>
     </Grid>
 </Window>

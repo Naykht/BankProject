@@ -21,6 +21,7 @@ namespace BankManager
     {
         IAccount acc = Factory.Instance.GAccount();
         ILoan lo = Factory.Instance.GLoan();
+        public event Action<List<Loan>> UpdateLoan; 
         public AddLoanWindow()
         {
             InitializeComponent();
@@ -30,14 +31,14 @@ namespace BankManager
         private void MakeLoan_Click(object sender, RoutedEventArgs e)
         {
             var accId = clientCombo.SelectedItem as Account;
-            var st = StartBox.SelectedDate;
             var en = EndBox.SelectedDate;
             decimal am;
             decimal p;
-            if (st != null && en != null && Decimal.TryParse(amountBox.Text, out am) && decimal.TryParse(percentBox.Text, out p) && accId != null)
+            if ( en != null && Decimal.TryParse(amountBox.Text, out am) && decimal.TryParse(percentBox.Text, out p) && accId != null)
             {
                 var now = DateTime.Now;
-                lo.AddLoan(accId.AccId, am, st ?? now, en ?? now, p);
+                lo.AddLoan(accId.AccId, am, en ?? now, p);
+                UpdateLoan?.Invoke(lo.Loans);
                 MessageBox.Show("You've successfully added a new loan");
                 Close();
                
