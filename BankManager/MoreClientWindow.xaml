@@ -1,0 +1,46 @@
+﻿<Window x:Class="BankManager.MoreClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankManager"
+        mc:Ignorable="d"
+        Title="MoreClientWindow" Height="225" Width="362">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="178"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >Name</TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="nBox"></TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >Birth Date</TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="bBox"></TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >Email</TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="eBox"></TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >Phone</TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="pBox"></TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >Address</TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="aBox">1</TextBlock>
+
+        </ListBox>
+        <ListView Grid.Column="1" Name="accList">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
+                    <GridViewColumn Width="60" Header="Balance, $" DisplayMemberBinding="{Binding Balance}"/>
+                    <GridViewColumn Width="50" Header="Status" DisplayMemberBinding="{Binding Status}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListBox Grid.Column="2">
+            <Button Width="70" Height="35" Margin="0 14" Click="Loan_Click">Loans</Button>
+            <Button Width="70" Height="35" Margin="0 13" Click="Dep_Click">Deposits</Button>
+            <Button Width="70" Height="35" Margin="0 14" Click="Tran_Click">Transactions</Button>
+        </ListBox>
+    </Grid>
+</Window>

@@ -1,0 +1,73 @@
+{
+  "Clients": [
+    {
+      "Id": 1,
+      "Name": "Aleks",
+      "BirthDate": "2000-06-26T00:00:00",
+      "Email": "khan@ru",
+      "Phone": "123",
+      "Address": "Mitinskaya"
+    },
+    {
+      "Id": 2,
+      "Name": "Igor Kruglov",
+      "BirthDate": "2000-12-09T00:00:00",
+      "Email": "round@ru",
+      "Phone": "111",
+      "Address": "5shose"
+    }
+  ],
+  "Accounts": [
+    {
+      "AccId": 1,
+      "ClientId": 1,
+      "Balance": 10500,
+      "Status": "Active"
+    }
+  ],
+  "Transactions": [
+    {
+      "TranId": 1,
+      "From": 1,
+      "To": 2,
+      "Date": "2019-11-01",
+      "Amount": 1350
+    }
+  ],
+  "Loans": [
+    {
+      "LoanId": 1,
+      "AccId": 1,
+      "Amount": 100000.0,
+      "StartDate": "2019-01-01T00:00:00",
+      "EndDate": "2019-03-03T00:00:00",
+      "Percent": 2.4
+    }
+  ],
+  "Deposits": [
+  {
+      "DepId": 1,
+      "AccId": 1,
+      "Amount": 100000.0,
+      "StartDate": "2019-01-01T00:00:00",
+      "EndDate": "2019-03-03T00:00:00",
+      "Percent": 10
+  },
+  {
+  	  "DepId": 1,
+      "AccId": 1,
+      "Amount": 100000.0,
+      "StartDate": "2019-01-01T00:00:00",
+      "EndDate": "2019-09-09T00:00:00",
+      "Percent": 10
+  },
+  {
+  	  "DepId": 1,
+      "AccId": 1,
+      "Amount": 100000.0,
+      "StartDate": "2019-05-01T00:00:00",
+      "EndDate": "2019-07-03T00:00:00",
+      "Percent": 10
+  }
+  ]
+}
