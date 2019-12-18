@@ -25,8 +25,9 @@ namespace banks
     public interface ILoan
     {
         List<Loan> Loans { get; }
-        List<Loan> DateLoan(DateTime start, DateTime end);
+        List<Loan> DateLoan(DateTime start, DateTime end, string c);
         List<Loan> AccLoan(int id);
+        void AddLoan(int id, decimal am, DateTime start, DateTime end, decimal per);
 
     }
     public interface IDeposit
@@ -101,6 +102,21 @@ namespace banks
             Clients = Clients.OrderBy(u => u.Id).ToList();
             SaveData();
         }
+        public void AddLoan(int id, decimal am, DateTime start, DateTime end, decimal percent)
+        {
+            var lo = new Loan
+            {
+                LoanId = Loans.Max(u => u.LoanId) + 1,
+                Amount = am,
+                StartDate = start,
+                EndDate = end,
+                AccId = id,
+                Status = "Active",
+                Percent = percent
+            };
+            Loans.Add(lo);
+            SaveData();
+        }
         public void AddDeposit(int depId, int accId, decimal amount, DateTime startDate, DateTime endDate, decimal Percent)
         {
             var dep = new Deposit
@@ -110,14 +126,16 @@ namespace banks
                 StartDate = startDate,
                 EndDate = endDate,
                 Percent = Percent,
-                DepId = Deposits.Max(u => u.DepId)
+                DepId = Deposits.Max(u => u.DepId) + 1
             };
             Deposits.Add(dep);
             SaveData();
         }
-        public List<Loan> DateLoan(DateTime start, DateTime end)
+        public List<Loan> DateLoan(DateTime start, DateTime end, string c)
         {
-            return Loans.FindAll(u => u.StartDate <= end || u.EndDate <= start);
+            if (c == "All")
+                return Loans.FindAll(u => u.StartDate >= start && u.EndDate <= end);
+            return Loans.FindAll(u => u.StartDate >= start && u.EndDate <= end && u.Status == c);
         }
         public List<Deposit> DateDep(DateTime start, DateTime end)
         {

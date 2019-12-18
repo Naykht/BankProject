@@ -44,14 +44,25 @@ namespace BankManager
             tranList.ItemsSource = tr.Transactions;
        
         }
-
+        public void UpdateCombo()
+        {
+            List<string> sample = new List<string>()
+            {
+                "All",
+                "Active",
+                "Closed",
+                "Expired"
+            };
+            loanCombo.ItemsSource = sample;
+            loanCombo.SelectedItem = "All";
+        }
         private void DateLoan_Click(object sender, RoutedEventArgs e)
         {
             var now = DateTime.Now;
             if (lStartBox.SelectedDate != null && lEndBox.SelectedDate != null && lStartBox.SelectedDate < lEndBox.SelectedDate)
             {
                 loanList.ItemsSource = null;
-                loanList.ItemsSource = lo.DateLoan(lStartBox.SelectedDate ?? now, lEndBox.SelectedDate ?? now);
+                loanList.ItemsSource = lo.DateLoan(lStartBox.SelectedDate ?? now, lEndBox.SelectedDate ?? now, loanCombo.SelectedItem as string);
             }
             else
                 MessageBox.Show("Please select an arbitrary period");
@@ -115,9 +126,13 @@ namespace BankManager
 
         private void MakeDep_Click(object sender, RoutedEventArgs e)
         {
-            var winDep = new AddClientWindow();
-            winClAdd.UpdateClient += UpdateClient;
-            winClAdd.Show();
+            var winAddDep = new AddDeposit();
+            
+        }
+
+        private void MakeLoan_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
