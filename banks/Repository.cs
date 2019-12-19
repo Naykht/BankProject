@@ -23,6 +23,7 @@ namespace banks
         List<Account> ClAcc(int id);
         void AddAccount(int clientId, decimal balance);
         void ChangeAccountStatus(Account acc);
+        void Money(int id, decimal amount);
     }
     public interface ILoan
     {
@@ -119,6 +120,7 @@ namespace banks
                 Status = "Active",
                 Percent = percent
             };
+            Money(id, -am);
             Loans.Add(lo);
             SaveData();
         }
@@ -206,6 +208,14 @@ namespace banks
             lo.Status = "Closed";
             Loans.RemoveAll(u => u.LoanId == id);
             Loans.Add(lo);
+            SaveData();
+        }
+        public void Money(int id, decimal amount)
+        {
+            Account acc = Accounts.First(u => u.AccId == id);
+            Accounts.RemoveAll(u => u.AccId == id);
+            acc.Balance = acc.Balance + amount;
+            Accounts.Add(acc);
             SaveData();
         }
     }

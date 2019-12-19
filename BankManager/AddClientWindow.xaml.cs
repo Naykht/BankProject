@@ -22,6 +22,10 @@ namespace BankManager
     {
         IClient cl = Factory.Instance.GClient();
         public event Action UpdateClient;
+        string phone;
+        string name;
+        string email;
+        string address;
         public AddClientWindow()
         {
             InitializeComponent();
@@ -30,20 +34,22 @@ namespace BankManager
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
-            var phone = phoneBox.Text;
-            var name = nameBox.Text;
-            var email = emailBox.Text;
-            var address = addressBox.Text;
+            phone = phoneBox.Text;
+            name = nameBox.Text;
+            email = emailBox.Text;
+            address = addressBox.Text;
             
             if (birthBox.SelectedDate != null && phone.All(char.IsDigit))
             {
                 DateTime date = birthBox.SelectedDate ?? DateTime.Now;
                 cl.AddClient(name, date, email, phone, address);
                 UpdateClient?.Invoke();
-                Close();
                 MessageBox.Show("You successfully added new client");
-                
-
+                phoneBox.Text = null;
+                nameBox.Text = null;
+                emailBox.Text = null;
+                addressBox.Text = null;
+                birthBox.Text = null;
             }
             else
                 MessageBox.Show("Invalid input data");
