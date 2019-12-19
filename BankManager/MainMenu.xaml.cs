@@ -175,10 +175,9 @@ namespace BankManager
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)//
         {
-            IAccount ac = Factory.Instance.GAccount();
             int accId;
             if (int.TryParse(SearchAccBox.Text, out accId))
-                accountList.ItemsSource = ac.ClAcc(accId);
+                accountList.ItemsSource = acc.ClAcc(accId);
             else
                 MessageBox.Show("Please, enter correct client id");
         }
@@ -198,7 +197,8 @@ namespace BankManager
 
         private void ChangeAccountStatus_Click(object sender, RoutedEventArgs e)
         {
-
+            acc.ChangeAccountStatus(accountList.SelectedItem as Account);
+            UpdateAccount();
         }
         public void UpdateTran()
         {
@@ -218,6 +218,11 @@ namespace BankManager
         private void TranResetButton_Click(object sender, RoutedEventArgs e)
         {
             UpdateTran();
+        }
+
+        private void MakeTranButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
