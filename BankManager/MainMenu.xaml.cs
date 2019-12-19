@@ -41,6 +41,7 @@ namespace BankManager
             lo.StatusLoan();
             loanList.ItemsSource = lo.Loans;
             depList.ItemsSource = null;
+            dep.StatusDeposit();
             depList.ItemsSource = dep.Deposits;
             tranList.ItemsSource = null;
             tranList.ItemsSource = tr.Transactions;
@@ -56,8 +57,9 @@ namespace BankManager
                 "Expired"
             };
             choiceLoan.ItemsSource = sample;
-            
             choiceLoan.SelectedItem = "All";
+            choiceDep.ItemsSource = sample;
+            choiceDep.SelectedItem = "All";
         }
         private void DateLoan_Click(object sender, RoutedEventArgs e)//
         {
@@ -91,7 +93,6 @@ namespace BankManager
         }
         private void EditClient_Click(object sender, RoutedEventArgs e)//
         {
-            
             Client cl = clientList.SelectedItem as Client;
             if (cl != null)
             {
@@ -101,7 +102,6 @@ namespace BankManager
             }
             else
                 MessageBox.Show("Please, select a client");
-            
         }
         private void MoreClient_Click(object sender, RoutedEventArgs e)//
         {
@@ -120,23 +120,31 @@ namespace BankManager
             {
                 var now = DateTime.Now;
                 depList.ItemsSource = null;
-                depList.ItemsSource = dep.DateDep(dStartBox.SelectedDate ?? now, dEndBox.SelectedDate ?? now);
+                depList.ItemsSource = dep.DateDep(dStartBox.SelectedDate ?? now, dEndBox.SelectedDate ?? now, choiceDep.SelectedItem as string);
             }
              else   
                 MessageBox.Show("Please select an arbitrary period");
         }
         private void ResetDep_Click(object sender, RoutedEventArgs e)
         {
-            depList.ItemsSource = null;
+            lStartBox.SelectedDate = null;
+            lEndBox.SelectedDate = null;
+            depList.ItemsSource = dep.Deposits;
+            UpdateList();
         }
-
         private void MakeDep_Click(object sender, RoutedEventArgs e)
         {
             var winAddDep = new AddDeposit();
-            
+            winAddDep.UpdateDeposit += UpdateDep;
+            winAddDep.UpdateAccount += UpdateAccount;
             winAddDep.Show();
         }
-
+        private void UpdateDep()
+        {
+            depList.ItemsSource = null;
+            dep = Factory.Instance.GDeposit();
+            depList.ItemsSource = dep.Deposits;
+        }
         private void MakeLoan_Click(object sender, RoutedEventArgs e)//
         {
             var winAddLoan = new AddLoanWindow();
@@ -144,13 +152,12 @@ namespace BankManager
             winAddLoan.UpdateAccount += UpdateAccount;
             winAddLoan.Show();
         }
-        public void UpdateLoan()//
+        public void UpdateLoan()
         {
             loanList.ItemsSource = null;
             lo = Factory.Instance.GLoan();
             loanList.ItemsSource = lo.Loans;
         }
-
         private void CloseLoan_Click(object sender, RoutedEventArgs e)//
         {
             var closeLo = loanList.SelectedItem as Loan;
@@ -165,7 +172,6 @@ namespace BankManager
                 lo.CloseLoan(closeLo.LoanId);
                 UpdateLoan();
             }
-            
         }
         public void UpdateAccount()//
         {
@@ -173,7 +179,6 @@ namespace BankManager
             acc = Factory.Instance.GAccount();
             accountList.ItemsSource = acc.Accounts;
         }
-
         private void SearchButton_Click(object sender, RoutedEventArgs e)//
         {
             IAccount ac = Factory.Instance.GAccount();
@@ -183,22 +188,35 @@ namespace BankManager
             else
                 MessageBox.Show("Please, enter correct client id");
         }
-
         private void AddAccount_Click(object sender, RoutedEventArgs e)//
         {
             var accAddWin = new AddAccountWindow();
             accAddWin.UpdateAccount += UpdateAccount;
             accAddWin.Show();
         }
-
         private void ResetAcc_Click(object sender, RoutedEventArgs e)
         {
             UpdateAccount();
         }
-
         private void ChangeAccountStatus_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void CloseDep_Click(object sender, RoutedEventArgs e)
+        {
+            var closeDe = depList.SelectedItem as Deposit;
+            if (closeDe == null)
+                MessageBox.Show("Please select a loan");
+            else if (closeDe.Status == "Expired")
+                MessageBox.Show("You cannot close this loan, because it is expired");
+            else if (closeDe.Status == "Closed")
+                MessageBox.Show("This loan is already closed");
+            else
+            {
+                lo.CloseLoan(closeDe.DepId);
+                UpdateDep();
+            }
         }
     }
 }

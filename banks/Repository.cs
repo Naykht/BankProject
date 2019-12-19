@@ -38,9 +38,11 @@ namespace banks
     public interface IDeposit
     {
         List<Deposit> Deposits { get; }
-        List<Deposit> DateDep(DateTime start, DateTime end);
+        List<Deposit> DateDep(DateTime start, DateTime end, string c);
         List<Deposit> AccDep(int id);
-        void AddDeposit(int depId, int accId, decimal amount, DateTime startDate, DateTime endDate, decimal Percent);
+        void AddDeposit(int id, decimal am, DateTime end, decimal per);
+        void StatusDeposit();
+        void CloseDeposit(int id);
     }
     public interface ITransaction
     {
@@ -48,7 +50,6 @@ namespace banks
         List<Transaction> DateTran(DateTime start, DateTime end);
         List<Transaction> AccTran(int id);
     }
-    
     /*public interface IData
     {
         List<Client> Clients { get; set; }
@@ -122,15 +123,16 @@ namespace banks
             Loans.Add(lo);
             SaveData();
         }
-        public void AddDeposit(int depId, int accId, decimal amount, DateTime startDate, DateTime endDate, decimal Percent)
+        public void AddDeposit(int id, decimal amount, DateTime endDate, decimal percent)
         {
             var dep = new Deposit
-            {
-                AccId = accId,
+            { 
+                AccId = id,
                 Amount = amount,
-                StartDate = startDate,
+                StartDate = DateTime.Now.Date,
                 EndDate = endDate,
-                Percent = Percent,
+                Percent = percent,
+                Status = "Active",
                 DepId = Deposits.Max(u => u.DepId) + 1
             };
             Deposits.Add(dep);
@@ -148,7 +150,6 @@ namespace banks
             Accounts.Add(ac);
             SaveData();
         }
-
         public void ChangeAccountStatus(Account acc)
         {
             if (acc.Status == false)
@@ -165,9 +166,11 @@ namespace banks
                 return Loans.FindAll(u => u.StartDate >= start && u.EndDate <= end);
             return Loans.FindAll(u => u.StartDate >= start && u.EndDate <= end && u.Status == c);
         }
-        public List<Deposit> DateDep(DateTime start, DateTime end)
+        public List<Deposit> DateDep(DateTime start, DateTime end, string c)
         {
-            return Deposits.FindAll(u => u.StartDate <= end || u.EndDate <= start);
+            if (c == "All")
+                return Deposits.FindAll(u => u.StartDate >= start && u.EndDate <= end);
+            return Deposits.FindAll(u => u.StartDate >= start && u.EndDate <= end && u.Status == c);
         }
         public List<Transaction> DateTran(DateTime start, DateTime end)
         {
@@ -189,6 +192,17 @@ namespace banks
         {
             return Accounts.FindAll(u => u.ClientId == id);
         }
+        public void StatusDeposit()
+        {
+            var depo = Deposits.FindAll(u => u.EndDate < DateTime.Now && u.Status == "Active");
+            foreach (Deposit el in depo)
+            {
+                Loans.RemoveAll(u => u.LoanId == el.DepId);
+                el.Status = "Expired";
+                Deposits.Add(el);
+            }
+            SaveData();
+        }
         public void StatusLoan()
         {
             var los = Loans.FindAll(u => u.EndDate < DateTime.Now && u.Status == "Active");
@@ -198,6 +212,14 @@ namespace banks
                 el.Status = "Expired";
                 Loans.Add(el);
             }
+            SaveData();
+        }
+        public void CloseDeposit(int id)
+        {
+            Deposit de = Deposits.First(u => u.DepId == id);
+            de.Status = "Closed";
+            Deposits.RemoveAll(u => u.DepId == id);
+            Deposits.Add(de);
             SaveData();
         }
         public void CloseLoan(int id)

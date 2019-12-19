@@ -109,6 +109,7 @@
                             <GridViewColumn Header="Percent" DisplayMemberBinding="{Binding Percent}"/>
                             <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
                             <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -118,10 +119,12 @@
                     <DatePicker Name="dStartBox"></DatePicker>
                     <TextBlock Margin="10 5 0 2">End Date</TextBlock>
                     <DatePicker Name="dEndBox"></DatePicker>
+                    <ListView Name="choiceDep" Height="85" Width="60"></ListView>
                     <Button Margin="10 10" Click="ExecuteDep_Click">Execute</Button>
                     <Button Margin="10 1" Click="ResetDep_Click">Reset</Button>
                     <TextBlock></TextBlock>
                     <Button Margin="10" Click="MakeLoan_Click">Make A Deposit</Button>
+                    <Button Margin="10"  Click="Button_Click">Close A Loan</Button>
                 </StackPanel>
             </Grid>
         </TabItem>

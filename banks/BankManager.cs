@@ -7,8 +7,5 @@ namespace banks
     public class BankManager
     {
         static readonly Factory f = Factory.Instance;
-        
-        
-
     }
 }

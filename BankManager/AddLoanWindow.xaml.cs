@@ -52,7 +52,6 @@ namespace BankManager
                 UpdateAccount?.Invoke();
                 Close();
                 MessageBox.Show("You've successfully added a new loan");
-                
             }
         }
         private void SelectClient_Click(object sender, RoutedEventArgs e)
@@ -60,7 +59,6 @@ namespace BankManager
             choCl = clientCombo.SelectedItem as Account;
             curAcc.Text = choCl.AccId.ToString();
             money.Text = choCl.Balance.ToString();
-           
         }
     }
 }
