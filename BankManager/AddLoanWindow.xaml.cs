@@ -21,7 +21,9 @@ namespace BankManager
     {
         IAccount acc = Factory.Instance.GAccount();
         ILoan lo = Factory.Instance.GLoan();
-        public event Action UpdateLoan; 
+        public event Action UpdateLoan;
+        public event Action UpdateAccount;
+        Account choCl;
         public AddLoanWindow()
         {
             InitializeComponent();
@@ -30,21 +32,35 @@ namespace BankManager
 
         private void MakeLoan_Click(object sender, RoutedEventArgs e)
         {
-            var accId = clientCombo.SelectedItem as Account;
+
             var en = EndBox.SelectedDate;
             decimal am;
             decimal p;
-            if ( en != null && Decimal.TryParse(amountBox.Text, out am) && decimal.TryParse(percentBox.Text, out p) && accId != null)
+            if (curAcc.Text == "-")
+                MessageBox.Show("Please choose an account");
+            else if (en == null || !decimal.TryParse(amountBox.Text, out am) || !decimal.TryParse(percentBox.Text, out p))
+                MessageBox.Show("Invalid input data");
+            else if (decimal.Parse(money.Text) < am)
+                MessageBox.Show("Account has insufficient funds");
+            else
             {
                 var now = DateTime.Now;
-                lo.AddLoan(accId.AccId, am, en ?? now, p);
+                int accId = int.Parse(curAcc.Text);
+                lo.AddLoan(accId, am, en ?? now, p);
                 UpdateLoan?.Invoke();
-                MessageBox.Show("You've successfully added a new loan");
+                acc.Take(accId, am);
+                UpdateAccount?.Invoke();
                 Close();
-               
+                MessageBox.Show("You've successfully added a new loan");
+                
             }
-            else
-                MessageBox.Show("Invalid input data");
+        }
+        private void SelectClient_Click(object sender, RoutedEventArgs e)
+        {
+            choCl = clientCombo.SelectedItem as Account;
+            curAcc.Text = choCl.AccId.ToString();
+            money.Text = choCl.Balance.ToString();
+           
         }
     }
 }

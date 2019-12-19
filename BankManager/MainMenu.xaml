@@ -50,7 +50,7 @@
                     </ListView.View>
                 </ListView>
                 <StackPanel Grid.Column="1">
-                    <TextBox Margin="10" Name="SearchAccgBox" Background="Beige" ></TextBox>
+                    <TextBox Margin="10" Name="SearchAccBox" Background="Beige" ></TextBox>
                     <Button x:Name="SearchButton" Margin="5" Click ="SearchButton_Click">Search by Id</Button>
                     <TextBlock></TextBlock>
                     <Button x:Name="AddAccount" Click="AddAccount_Click" Margin="10">Add</Button>

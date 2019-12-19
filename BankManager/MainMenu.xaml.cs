@@ -46,7 +46,7 @@ namespace BankManager
             tranList.ItemsSource = tr.Transactions;
        
         }
-        public void UpdateCombo()
+        public void UpdateCombo()//
         {
             List<string> sample = new List<string>()
             {
@@ -70,26 +70,26 @@ namespace BankManager
             else
                 MessageBox.Show("Please select an arbitrary period");
         }
-        private void ResetLoan_Click(object sender, RoutedEventArgs e)
+        private void ResetLoan_Click(object sender, RoutedEventArgs e)//
         {
             lStartBox.SelectedDate = null;
             lEndBox.SelectedDate = null;
             loanList.ItemsSource = lo.Loans;
             UpdateList();
         }
-        private void AddClient_Click(object sender, RoutedEventArgs e)
+        private void AddClient_Click(object sender, RoutedEventArgs e)//
         {
             var winClAdd = new AddClientWindow();
             winClAdd.UpdateClient += UpdateClient; 
             winClAdd.Show();
         }
-        public void UpdateClient()
+        public void UpdateClient()//
         {
             clientList.ItemsSource = null;
             cl = Factory.Instance.GClient();
             clientList.ItemsSource = cl.Clients;
         }
-        private void EditClient_Click(object sender, RoutedEventArgs e)
+        private void EditClient_Click(object sender, RoutedEventArgs e)//
         {
             
             Client cl = clientList.SelectedItem as Client;
@@ -100,10 +100,10 @@ namespace BankManager
                 winClEd.Show();
             }
             else
-                MessageBox.Show("Please, choose a client");
+                MessageBox.Show("Please, select a client");
             
         }
-        private void MoreClient_Click(object sender, RoutedEventArgs e)
+        private void MoreClient_Click(object sender, RoutedEventArgs e)//
         {
             Client cl = clientList.SelectedItem as Client;
             if (cl != null)
@@ -111,6 +111,8 @@ namespace BankManager
                 var winClMo = new MoreClientWindow(cl);
                 winClMo.Show();
             }
+            else
+                MessageBox.Show("Please, select a client");
         }
         private void ExecuteDep_Click(object sender, RoutedEventArgs e)
         { 
@@ -131,51 +133,58 @@ namespace BankManager
         private void MakeDep_Click(object sender, RoutedEventArgs e)
         {
             var winAddDep = new AddDeposit();
+            
             winAddDep.Show();
         }
 
-        private void MakeLoan_Click(object sender, RoutedEventArgs e)
+        private void MakeLoan_Click(object sender, RoutedEventArgs e)//
         {
             var winAddLoan = new AddLoanWindow();
             winAddLoan.UpdateLoan += UpdateLoan;
+            winAddLoan.UpdateAccount += UpdateAccount;
             winAddLoan.Show();
         }
-        public void UpdateLoan()
+        public void UpdateLoan()//
         {
             loanList.ItemsSource = null;
             lo = Factory.Instance.GLoan();
             loanList.ItemsSource = lo.Loans;
         }
 
-        private void CloseLoan_Click(object sender, RoutedEventArgs e)
+        private void CloseLoan_Click(object sender, RoutedEventArgs e)//
         {
             var closeLo = loanList.SelectedItem as Loan;
-            if (closeLo != null)
+            if (closeLo == null)
+                MessageBox.Show("Please select a loan");
+            else if (closeLo.Status == "Expired")
+                MessageBox.Show("You cannot close this loan, because it is expired");
+            else if (closeLo.Status == "Closed")
+                MessageBox.Show("This loan is already closed");
+            else 
             {
                 lo.CloseLoan(closeLo.LoanId);
                 UpdateLoan();
             }
-            else
-                MessageBox.Show("Please select a loan");
+            
         }
-        public void UpdateAccount()
+        public void UpdateAccount()//
         {
             accountList.ItemsSource = null;
             acc = Factory.Instance.GAccount();
             accountList.ItemsSource = acc.Accounts;
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        private void SearchButton_Click(object sender, RoutedEventArgs e)//
         {
             IAccount ac = Factory.Instance.GAccount();
-            var searchId = SearchAccgBox.Text;
-            if (searchId != "")
-                accountList.ItemsSource = ac.ClAcc(int.Parse(searchId));
+            int accId;
+            if (int.TryParse(SearchAccBox.Text, out accId))
+                accountList.ItemsSource = ac.ClAcc(accId);
             else
-                MessageBox.Show("Please, enter correct ID");
+                MessageBox.Show("Please, enter correct client id");
         }
 
-        private void AddAccount_Click(object sender, RoutedEventArgs e)
+        private void AddAccount_Click(object sender, RoutedEventArgs e)//
         {
             var accAddWin = new AddAccountWindow();
             accAddWin.UpdateAccount += UpdateAccount;
