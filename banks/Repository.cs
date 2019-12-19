@@ -22,6 +22,7 @@ namespace banks
         List<Account> Accounts { get; }
         List<Account> ClAcc(int id);
         void AddAccount(int clientId, decimal balance);
+        void ChangeAccountStatus(Account acc);
         void Take(int id, decimal amount);
     }
     public interface ILoan
@@ -145,6 +146,17 @@ namespace banks
                 Status = true
             };
             Accounts.Add(ac);
+            SaveData();
+        }
+
+        public void ChangeAccountStatus(Account acc)
+        {
+            if (acc.Status == false)
+                acc.Status = true;
+            else
+                acc.Status = false;
+            Accounts.RemoveAll(u => u.AccId == acc.AccId);
+            Accounts.Add(acc);
             SaveData();
         }
         public List<Loan> DateLoan(DateTime start, DateTime end, string c)
