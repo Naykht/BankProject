@@ -167,10 +167,9 @@ namespace BankManager
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            IAccount ac = Factory.Instance.GAccount();
             var searchId = SearchAccgBox.Text;
             if (searchId != "")
-                accountList.ItemsSource = ac.ClAcc(int.Parse(searchId));
+                accountList.ItemsSource = acc.ClAcc(int.Parse(searchId));
             else
                 MessageBox.Show("Please, enter correct ID");
         }
@@ -184,6 +183,14 @@ namespace BankManager
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
+            UpdateAccount();
+        }
+
+
+        private void ChangeAccountStatus_Click(object sender, RoutedEventArgs e)
+        {
+            var account1 = accountList.SelectedItem as Account;
+            acc.ChangeAccountStatus(account1);
             UpdateAccount();
         }
     }

@@ -54,7 +54,7 @@
                     <Button x:Name="SearchButton" Margin="7" Click ="SearchButton_Click">Search by Id</Button>
                     <Button x:Name="ResetButton" Click="ResetButton_Click" Margin="10">Reset</Button>
                     <Button x:Name="AddAccount" Click="AddAccount_Click" Margin="10">Add Account</Button>
-                    <Button Margin="10">Deactivate Account</Button>
+                    <Button x:Name="ChangeAccountStatus" Click="ChangeAccountStatus_Click" Margin="10">Change Account Status</Button>
                     
                 </StackPanel>
             </Grid>
