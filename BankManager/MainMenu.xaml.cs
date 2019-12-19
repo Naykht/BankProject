@@ -183,6 +183,7 @@ namespace BankManager
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
+            SearchAccgBox.Text = null;
             UpdateAccount();
         }
 
@@ -192,6 +193,27 @@ namespace BankManager
             var account1 = accountList.SelectedItem as Account;
             acc.ChangeAccountStatus(account1);
             UpdateAccount();
+        }
+        public void UpdateTran()
+        {
+            tranList.ItemsSource = null;
+            tr = Factory.Instance.GTransaction();
+            tranList.ItemsSource = tr.Transactions;
+        }
+
+
+        private void ExecuteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var startDt = Convert.ToDateTime(tStartBox.SelectedDate);
+            var endDt = Convert.ToDateTime(tEndBox.SelectedDate);
+            tranList.ItemsSource = tr.DateTran(startDt, endDt);
+            
+
+        }
+
+        private void TranResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateTran();
         }
     }
 }

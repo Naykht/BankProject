@@ -46,6 +46,7 @@ namespace banks
         List<Transaction> Transactions { get; }
         List<Transaction> DateTran(DateTime start, DateTime end);
         List<Transaction> AccTran(int id);
+
     }
     
     /*public interface IData
