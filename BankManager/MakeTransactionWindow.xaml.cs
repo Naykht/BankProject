@@ -40,7 +40,7 @@ namespace BankManager
             else 
             {
                 senderAcc.Text = $"Account ID(sender): {senderAccSelected.AccId.ToString()}";
-                money =
+             
                 
             }
 

@@ -152,7 +152,7 @@
                     <Button Name="ExecuteButton" Click="ExecuteTran_Click"  Margin="10 10" >Execute</Button>
                     <Button Name="TranResetButton" Click="TranResetButton_Click" Margin="10 1" >Reset</Button>
                     <TextBlock></TextBlock>
-                    <Button>Make A Transacation</Button>
+                    <Button x:Name="MakeTranButton" Click="MakeTranButton_Click" >Make A Transacation</Button>
                 </StackPanel>
             </Grid>
         </TabItem>
