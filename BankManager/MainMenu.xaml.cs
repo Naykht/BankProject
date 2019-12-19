@@ -141,7 +141,7 @@ namespace BankManager
         {
             var winAddLoan = new AddLoanWindow();
             winAddLoan.UpdateLoan += UpdateLoan;
-            winAddLoan.UpdateAccount += UpdateAccount;
+            winAddLoan.UpdateLoan += UpdateAccount;
             winAddLoan.Show();
         }
         public void UpdateLoan()//

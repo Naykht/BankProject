@@ -20,9 +20,7 @@ namespace BankManager
     public partial class AddLoanWindow : Window
     {
         IAccount acc = Factory.Instance.GAccount();
-        ILoan lo = Factory.Instance.GLoan();
         public event Action UpdateLoan;
-        public event Action UpdateAccount;
         Account choCl;
         public AddLoanWindow()
         {
@@ -44,12 +42,12 @@ namespace BankManager
                 MessageBox.Show("Account has insufficient funds");
             else
             {
+                acc = Factory.Instance.GAccount();
+                ILoan lo = Factory.Instance.GLoan();
                 var now = DateTime.Now;
                 int accId = int.Parse(curAcc.Text);
                 lo.AddLoan(accId, am, en ?? now, p);
                 UpdateLoan?.Invoke();
-                acc.Money(accId, am, false);
-                UpdateAccount?.Invoke();
                 Close();
                 MessageBox.Show("You've successfully added a new loan");
                 
