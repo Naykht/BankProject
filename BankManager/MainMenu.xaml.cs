@@ -158,5 +158,28 @@ namespace BankManager
             else
                 MessageBox.Show("Please select a loan");
         }
+        public void UpdateAccount()
+        {
+            accountList.ItemsSource = null;
+            acc = Factory.Instance.GAccount();
+            accountList.ItemsSource = acc.Accounts;
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            IAccount ac = Factory.Instance.GAccount();
+            var searchId = SearchAccgBox.Text;
+            if (searchId != "")
+                accountList.ItemsSource = ac.ClAcc(int.Parse(searchId));
+            else
+                MessageBox.Show("Please, enter correct ID");
+        }
+
+        private void AddAccount_Click(object sender, RoutedEventArgs e)
+        {
+            var accAddWin = new AddAccountWindow();
+            accAddWin.UpdateAccount += UpdateAccount;
+            accAddWin.Show();
+        }
     }
 }
