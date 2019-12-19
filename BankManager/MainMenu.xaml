@@ -5,22 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankManager"
         mc:Ignorable="d"
-        Title="" Height="400" Width="800">
+        Title="" Height="400" Width="900">
     <TabControl TabStripPlacement="Left">
         <TabItem Header="Clients" Height="75">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="650"/>
                     <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
                 <ListView Grid.Column="0" Name="clientList">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="50" Header="Client Id" DisplayMemberBinding="{Binding Id}"/>
-                            <GridViewColumn Width="120" Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                            <GridViewColumn Width="120" Header="Birth Date" DisplayMemberBinding="{Binding BirthDate}"/>
-                            <GridViewColumn Width="120" Header="Email" DisplayMemberBinding="{Binding Email}"/>
-                            <GridViewColumn Width="110" Header="Phone" DisplayMemberBinding="{Binding Phone}"/>
+                            <GridViewColumn Width="200" Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Width="70" Header="Birth Date" DisplayMemberBinding="{Binding BirthDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <GridViewColumn Width="200" Header="Email" DisplayMemberBinding="{Binding Email}"/>
+                            <GridViewColumn Width="90" Header="Phone" DisplayMemberBinding="{Binding Phone}"/>
                             <GridViewColumn Width="130" Header="Address" DisplayMemberBinding="{Binding Address}"/>
                         </GridView>
                     </ListView.View>
@@ -73,8 +73,8 @@
                             <GridViewColumn Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
                             <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
                             <GridViewColumn Header="Percent" DisplayMemberBinding="{Binding Percent}"/>
-                            <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate}"/>
-                            <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate}"/>
+                            <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
                             <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"/>
                         </GridView>
                     </ListView.View>
@@ -107,8 +107,8 @@
                             <GridViewColumn Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
                             <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
                             <GridViewColumn Header="Percent" DisplayMemberBinding="{Binding Percent}"/>
-                            <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate}"/>
-                            <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate}"/>
+                            <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -138,7 +138,7 @@
                             <GridViewColumn Header="From" DisplayMemberBinding="{Binding From}"/>
                             <GridViewColumn Header="To" DisplayMemberBinding="{Binding To}"/>
                             <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
-                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}"/>
     
                         </GridView>
                     </ListView.View>
