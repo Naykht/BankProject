@@ -55,8 +55,10 @@ namespace BankManager
                 "Closed",
                 "Expired"
             };
-            choiceLoan.ItemsSource = sample;    
+            choiceLoan.ItemsSource = sample;
             choiceLoan.SelectedItem = "All";
+            choiceDepo.ItemsSource = sample;
+            choiceDepo.SelectedItem = "All";
         }
         private void DateLoan_Click(object sender, RoutedEventArgs e)//
         {
@@ -117,7 +119,7 @@ namespace BankManager
             {
                 var now = DateTime.Now;
                 depList.ItemsSource = null;
-                depList.ItemsSource = dep.DateDep(dStartBox.SelectedDate ?? now, dEndBox.SelectedDate ?? now, choiceDep.SelectedItem as string);
+                depList.ItemsSource = dep.DateDep(dStartBox.SelectedDate ?? now, dEndBox.SelectedDate ?? now, choiceDepo.SelectedItem as string);
             }
              else   
                 MessageBox.Show("Please select an arbitrary period");
