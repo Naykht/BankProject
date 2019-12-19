@@ -14,7 +14,6 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding TranId}"></DataGridTextColumn>
                         <DataGridTextColumn Width="70" Header="Amount, $" Binding="{Binding Amount}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="From Account, Id" Binding="{Binding From}"></DataGridTextColumn>
                         <DataGridTextColumn Header="To Account, Id" Binding="{Binding To}"></DataGridTextColumn>
                         <DataGridTextColumn Width="125" Header="Date" Binding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}"></DataGridTextColumn>
                     </DataGrid.Columns>

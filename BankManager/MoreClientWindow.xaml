@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankManager"
         mc:Ignorable="d"
-        Title="MoreClientWindow" Height="250" Width="362">
+        Title="MoreClientWindow" Height="Auto" MaxHeight="300" MaxWidth="1000" Width="Auto">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="178"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="90"/>
         </Grid.ColumnDefinitions>
         <ListBox>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >Name</TextBlock>
@@ -28,18 +28,15 @@
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="aBox">1</TextBlock>
 
         </ListBox>
-        <ListView Grid.Column="1" Name="accList">
+        <ListView Grid.Column="1" Name="accList" Width="Auto">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
                     <GridViewColumn Width="60" Header="Balance, $" DisplayMemberBinding="{Binding Balance}"/>
-                    <GridViewColumn Width="50" Header="Status" DisplayMemberBinding="{Binding Status}"/>
+                    <GridViewColumn Width="Auto" Header="Status" DisplayMemberBinding="{Binding Status}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListBox Grid.Column="2">
-            <Button Width="70" Height="35" Margin="0 50" Click="Edit_Click">Edit</Button>
-            <Button Width="70" Height="35" Margin="0 0 0 40" Click="Operations_Click">Transactions</Button>
-        </ListBox>
+        <Button Width="70" Height="35" Grid.Column="2" Click="Operations_Click" >Operations</Button>
     </Grid>
 </Window>

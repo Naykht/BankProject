@@ -55,8 +55,7 @@ namespace BankManager
                 "Closed",
                 "Expired"
             };
-            choiceLoan.ItemsSource = sample;
-            
+            choiceLoan.ItemsSource = sample;    
             choiceLoan.SelectedItem = "All";
         }
         private void DateLoan_Click(object sender, RoutedEventArgs e)//
@@ -68,7 +67,7 @@ namespace BankManager
                 loanList.ItemsSource = lo.DateLoan(lStartBox.SelectedDate ?? now, lEndBox.SelectedDate ?? now, choiceLoan.SelectedItem as string);
             }
             else
-                MessageBox.Show("Please select an arbitrary period");
+                MessageBox.Show("Error, incorrect input data");
         }
         private void ResetLoan_Click(object sender, RoutedEventArgs e)//
         {
@@ -209,13 +208,11 @@ namespace BankManager
         }
 
 
-        private void ExecuteButton_Click(object sender, RoutedEventArgs e)
+        private void ExecuteTran_Click(object sender, RoutedEventArgs e)
         {
             var startDt = Convert.ToDateTime(tStartBox.SelectedDate);
             var endDt = Convert.ToDateTime(tEndBox.SelectedDate);
             tranList.ItemsSource = tr.DateTran(startDt, endDt);
-            
-
         }
 
         private void TranResetButton_Click(object sender, RoutedEventArgs e)
