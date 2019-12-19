@@ -75,6 +75,7 @@
                             <GridViewColumn Header="Percent" DisplayMemberBinding="{Binding Percent}"/>
                             <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate}"/>
                             <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate}"/>
+                            <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -89,6 +90,7 @@
                     <Button Margin="10 1" Click="ResetLoan_Click">Reset</Button>
                     <TextBlock></TextBlock>
                     <Button Margin="10"  Click="MakeLoan_Click">Make A Loan</Button>
+                    <Button Margin="10"  Click="CloseLoan_Click">Close A Loan</Button>
                 </StackPanel>
             </Grid>
         </TabItem>

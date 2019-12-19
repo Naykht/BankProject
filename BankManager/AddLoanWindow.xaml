@@ -25,7 +25,7 @@
         <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">End Date</TextBlock>
         <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">Percent</TextBlock>
 
-        <ComboBox Name="clientCombo" Grid.Column="1" Margin="6">
+        <ComboBox Name="clientCombo" Grid.Column="1" Margin="10">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

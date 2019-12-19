@@ -9,6 +9,6 @@ namespace banks.Model
         public int ClientId { get; set; }
         public int AccId { get; set; } 
         public decimal Balance { get; set; }
-        public string Status { get; set; } 
+        public bool Status { get; set; } 
     }
 }

@@ -28,6 +28,8 @@ namespace banks
         List<Loan> DateLoan(DateTime start, DateTime end, string c);
         List<Loan> AccLoan(int id);
         void AddLoan(int id, decimal am, DateTime end, decimal per);
+        void StatusLoan();
+        void CloseLoan(int id);
 
     }
     public interface IDeposit
@@ -108,7 +110,7 @@ namespace banks
             {
                 LoanId = Loans.Max(u => u.LoanId) + 1,
                 Amount = am,
-                StartDate = DateTime.Now,
+                StartDate = DateTime.Now.Date,
                 EndDate = end,
                 AccId = id,
                 Status = "Active",
@@ -160,6 +162,25 @@ namespace banks
         public List<Account> ClAcc(int id)
         {
             return Accounts.FindAll(u => u.ClientId == id);
+        }
+        public void StatusLoan()
+        {
+            var los = Loans.FindAll(u => u.EndDate < DateTime.Now && u.Status == "Active");
+            foreach (Loan el in los)
+            {
+                Loans.RemoveAll(u => u.LoanId == el.LoanId);
+                el.Status = "Expired";
+                Loans.Add(el);
+            }
+            SaveData();
+        }
+        public void CloseLoan(int id)
+        {
+            Loan lo = Loans.First(u => u.LoanId == id);
+            lo.Status = "Closed";
+            Loans.RemoveAll(u => u.LoanId == id);
+            Loans.Add(lo);
+            SaveData();
         }
     }
     public class BankDataJson: BankData, IGetData

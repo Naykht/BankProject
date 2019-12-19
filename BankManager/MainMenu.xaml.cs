@@ -38,6 +38,7 @@ namespace BankManager
             accountList.ItemsSource = null;
             accountList.ItemsSource = acc.Accounts;
             loanList.ItemsSource = null;
+            lo.StatusLoan();
             loanList.ItemsSource = lo.Loans;
             depList.ItemsSource = null;
             depList.ItemsSource = dep.Deposits;
@@ -142,6 +143,14 @@ namespace BankManager
         {
             loanList.ItemsSource = null;
             loanList.ItemsSource = loads;
+        }
+
+        private void CloseLoan_Click(object sender, RoutedEventArgs e)
+        {
+            var closeLo = loanList.SelectedItem as Loan;
+            lo.CloseLoan(closeLo.LoanId);
+            loanList.ItemsSource = lo.Loans;
+            loanList.ItemsSource = null;
         }
     }
 }

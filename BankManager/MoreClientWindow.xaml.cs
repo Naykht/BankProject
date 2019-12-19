@@ -30,7 +30,7 @@ namespace BankManager
         public void UpdateInfo()
         {
             nBox.Text = cl.Name;
-            bBox.Text = cl.BirthDate.ToString();
+            bBox.Text = cl.BirthDate.ToString("dd/MM/yyyy");
             eBox.Text = cl.Email;
             pBox.Text = cl.Phone;
             aBox.Text = cl.Address;
@@ -38,25 +38,21 @@ namespace BankManager
             accList.ItemsSource = acc.ClAcc(cl.Id) ;
         }
 
-        private void Loan_Click(object sender, RoutedEventArgs e)
+
+        private void Operations_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Dep_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Tran_Click(object sender, RoutedEventArgs e)
-        {
-            var acc = accList.SelectedItem as Account;
+            var acd = accList.SelectedItem as Account;
             if (acc != null)
             {
-                var tranwin = new TransactionWindow(acc);
+                var tranwin = new AccountOperationWindow(acd);
                 tranwin.Show();
             }
                 
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+           
         }
     }
 }
