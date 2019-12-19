@@ -134,7 +134,7 @@
                 <ListView Name="tranList">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Transaction Id" DisplayMemberBinding="{Binding LoanId}"/>
+                            <GridViewColumn Header="Transaction Id" DisplayMemberBinding="{Binding TranId}"/>
                             <GridViewColumn Header="From" DisplayMemberBinding="{Binding From}"/>
                             <GridViewColumn Header="To" DisplayMemberBinding="{Binding To}"/>
                             <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
