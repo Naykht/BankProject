@@ -30,7 +30,6 @@ namespace BankManager
 
         private void MakeLoan_Click(object sender, RoutedEventArgs e)
         {
-
             var en = EndBox.SelectedDate;
             decimal am;
             decimal p;
@@ -38,17 +37,18 @@ namespace BankManager
                 MessageBox.Show("Please choose an account");
             else if (en == null || !decimal.TryParse(amountBox.Text, out am) || !decimal.TryParse(percentBox.Text, out p))
                 MessageBox.Show("Invalid input data");
-            else if (decimal.Parse(money.Text) < am)
-                MessageBox.Show("Account has insufficient funds");
             else
             {
-                acc = Factory.Instance.GAccount();
                 ILoan lo = Factory.Instance.GLoan();
                 var now = DateTime.Now;
                 int accId = int.Parse(curAcc.Text);
                 lo.AddLoan(accId, am, en ?? now, p);
                 UpdateLoan?.Invoke();
-                Close();
+                curAcc.Text = null;
+                amountBox.Text = null;
+                percentBox.Text = null;
+                EndBox.SelectedDate = null;
+                clientCombo.SelectedItem = null;
                 MessageBox.Show("You've successfully added a new loan");
             }
         }
@@ -56,7 +56,6 @@ namespace BankManager
         {
             choCl = clientCombo.SelectedItem as Account;
             curAcc.Text = choCl.AccId.ToString();
-            money.Text = choCl.Balance.ToString();
         }
     }
 }

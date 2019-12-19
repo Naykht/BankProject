@@ -49,19 +49,9 @@ namespace banks
         List<Transaction> Transactions { get; }
         List<Transaction> DateTran(DateTime start, DateTime end);
         List<Transaction> AccTran(int id);
+        void AddTran(int id, int to, decimal amount);
 
     }
-    /*public interface IData
-    {
-        List<Client> Clients { get; set; }
-        List<Account> Accounts { get; set; }
-        List<Transaction> Transactions { get; set; }
-        List<Loan> Loans { get; set; }
-        List<Deposit> Deposits { get; set; }
-
-        void AddClient(string name, DateTime date, string email, string phone, string address);
-        void EditClient(string name, DateTime date, string email, string phone, string address, int id);
-    }*/
     public interface IGetData
     {
         static string Path;
@@ -80,7 +70,10 @@ namespace banks
         {
         }
         public void AddClient(string name, DateTime date, string email, string phone, string address)
-        {
+        { 
+            int w = 1;
+            if (Clients.Count != 0)
+                w += Clients.Max(u => u.Id);
             var cl = new Client
             {
                 Name = name,
@@ -88,7 +81,7 @@ namespace banks
                 Phone = phone,
                 Address = address,
                 Email = email,
-                Id = Clients.Max(u => u.Id) + 1
+                Id = w
             };
             Clients.Add(cl);
             SaveData();
@@ -110,10 +103,13 @@ namespace banks
             SaveData();
         }
         public void AddLoan(int id, decimal am, DateTime end, decimal percent)
-        {
+        { 
+            int w = 1;
+            if (Loans.Count != 0)
+                w += Loans.Max(u => u.LoanId);
             var lo = new Loan
             {
-                LoanId = Loans.Max(u => u.LoanId) + 1,
+                LoanId = w,
                 Amount = am,
                 StartDate = DateTime.Now.Date,
                 EndDate = end,
@@ -121,12 +117,15 @@ namespace banks
                 Status = "Active",
                 Percent = percent
             };
-            Money(id, -am);
+            Money(id, am);
             Loans.Add(lo);
             SaveData();
         }
         public void AddDeposit(int id, decimal amount, DateTime endDate, decimal percent)
         {
+            int w = 1;
+            if (Deposits.Count != 0)
+                w += Deposits.Max(u => u.DepId);
             var dep = new Deposit
             { 
                 AccId = id,
@@ -135,21 +134,41 @@ namespace banks
                 EndDate = endDate,
                 Percent = percent,
                 Status = "Active",
-                DepId = Deposits.Max(u => u.DepId) + 1
+                DepId = w
             };
+            Money(id, -amount);
             Deposits.Add(dep);
             SaveData();
         }
         public void AddAccount(int clientId, decimal balance)
         {
+            int w = 1;
+            if (Accounts.Count != 0)
+                w += Accounts.Max(u => u.AccId);
             var ac = new Account
             {
                 ClientId = clientId,
-                AccId = Accounts.Max(u => u.AccId) + 1,
+                AccId = w,
                 Balance = balance,
                 Status = true
             };
             Accounts.Add(ac);
+            SaveData();
+        }
+        public void AddTran(int id, int to, decimal amount)
+        {
+            int w = 1;
+            if (Transactions.Count != 0)
+                w += Transactions.Max(u => u.TranId);
+            var trab = new Transaction
+            {
+                From = id,
+                To = to,
+                Amount = amount,
+                Date = DateTime.Now.Date,
+                TranId = w
+            };
+            Transactions.Add(trab);
             SaveData();
         }
         public void ChangeAccountStatus(Account acc)
@@ -200,8 +219,10 @@ namespace banks
             foreach (Deposit el in depo)
             {
                 Loans.RemoveAll(u => u.LoanId == el.DepId);
-                el.Status = "Expired";
+                el.Status = "Closed";
                 Deposits.Add(el);
+                decimal sum = el.Amount * (1 + (el.Percent / 100));
+                Money(el.AccId, sum);
             }
             SaveData();
         }

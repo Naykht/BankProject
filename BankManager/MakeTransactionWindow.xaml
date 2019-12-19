@@ -15,7 +15,6 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="187"/>
@@ -41,15 +40,17 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button Name="selectSenButton" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="20" Click="selectSenButton_Click">Select an account</Button>
-        <Button Name="selectRecButton" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="20" Click="selectRecButton_Click">Select an account</Button>
-        <TextBlock Name="senderAcc" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">Account ID(sender):</TextBlock>
-        <TextBlock Name="recieverAcc" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">Account ID(reciever):</TextBlock>
-        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">Available Amount To Send</TextBlock>
+        <Button Name="selectSenButton" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="20" Click="selectSenButton_Click">Confirm</Button>
+        <Button Name="selectRecButton" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="20" Click="selectRecButton_Click">Confirm</Button>
+        <TextBlock  Grid.Row="3" Margin="20 10 10 10" VerticalAlignment="Center">Account sender Id</TextBlock>
+        <TextBlock VerticalAlignment="Center" Name="senderAcc" Grid.Row="3" Margin="150 0 0 0" >-</TextBlock>
+        <TextBlock Margin="20 10 10 10" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">Account receiver Id</TextBlock>
+        <TextBlock Margin="150 0 0 0" Name="recieverAcc" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"> - </TextBlock>
+        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">Available Amount</TextBlock>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="money" Grid.Row="4" Grid.Column="1">0</TextBlock>
         <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">Amount</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="amountBox" Width="180"></TextBox>
-        <Button Name="ConfrimTranButton" Grid.Row="7" Grid.ColumnSpan="2" Width="150" Height="20" Click="ConfrimTranButton_Click" >Confirm Transaction</Button>
+        <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="amountBox" Width="160"></TextBox>
+        <Button Name="ConfrimTranButton" Grid.Row="6" Grid.ColumnSpan="2" Width="150" Height="20" Click="ConfrimTranButton_Click" >Confirm Transaction</Button>
         
         
     </Grid>

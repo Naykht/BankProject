@@ -20,9 +20,7 @@ namespace BankManager
     public partial class AddDeposit : Window
     {
         IAccount acc = Factory.Instance.GAccount();
-        IDeposit dep = Factory.Instance.GDeposit();
         public event Action UpdateDeposit;
-        public event Action UpdateAccount;
         Account choCl;
         public AddDeposit()
         {
@@ -42,13 +40,17 @@ namespace BankManager
                 MessageBox.Show("Account has insufficient funds");
             else
             {
+                IDeposit dep = Factory.Instance.GDeposit();
                 var now = DateTime.Now;
                 int accId = int.Parse(curAcc.Text);
                 dep.AddDeposit(accId, am, en ?? now, p);
                 UpdateDeposit?.Invoke();
-                acc.Money(accId, am);
-                UpdateAccount?.Invoke();
-                Close();
+                curAcc.Text = null;
+                money.Text = null;
+                amountBox.Text = null;
+                percentBox.Text = null;
+                EndBox.SelectedDate = null;
+                clientCombo.SelectedItem = null;
                 MessageBox.Show("You've successfully added a new deposit");
             }
         }

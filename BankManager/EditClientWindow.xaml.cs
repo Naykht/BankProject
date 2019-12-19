@@ -42,9 +42,7 @@ namespace BankManager
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             var phone = phoneBox.Text;
-            
             var name = nameBox.Text;
-            MessageBox.Show(name);
             var email = emailBox.Text;
             var address = addressBox.Text;
             if (birthBox.SelectedDate != null && phone.All(char.IsDigit))

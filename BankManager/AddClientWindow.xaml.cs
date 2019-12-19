@@ -20,7 +20,7 @@ namespace BankManager
     /// </summary>
     public partial class AddClientWindow : Window
     {
-        IClient cl = Factory.Instance.GClient();
+        
         public event Action UpdateClient;
         string phone;
         string name;
@@ -38,9 +38,9 @@ namespace BankManager
             name = nameBox.Text;
             email = emailBox.Text;
             address = addressBox.Text;
-            
             if (birthBox.SelectedDate != null && phone.All(char.IsDigit))
             {
+                IClient cl = Factory.Instance.GClient();
                 DateTime date = birthBox.SelectedDate ?? DateTime.Now;
                 cl.AddClient(name, date, email, phone, address);
                 UpdateClient?.Invoke();

@@ -7,9 +7,12 @@ namespace banks
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            var n = DateTime.Now;
-            Console.WriteLine(n.ToString("dd/MM/yyyy"));
+            decimal Amount = 100;
+            decimal Percent = (decimal)7.5;
+            decimal a = Amount / Percent;
+            
+            decimal sum = Amount * (1 + (Percent / 100));
+            Console.WriteLine(sum);
         }
     }
 }

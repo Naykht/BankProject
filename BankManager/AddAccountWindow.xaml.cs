@@ -19,10 +19,7 @@ namespace BankManager
     /// </summary>
     public partial class AddAccountWindow : Window
     {
-        IAccount ac = Factory.Instance.GAccount();
         IClient cl = Factory.Instance.GClient();
-        decimal startBalance;
-        int chosenClientId;
         public event Action UpdateAccount;
         public AddAccountWindow()
         {
@@ -32,14 +29,19 @@ namespace BankManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            startBalance = Convert.ToDecimal(balanceBox.Text);
-            chosenClientId = (clientCombo.SelectedItem as Client).Id ;
-
-            ac.AddAccount(chosenClientId, startBalance);
-            UpdateAccount?.Invoke();
-            balanceBox.Text = null;
-            clientCombo.SelectedItem = null;
-            MessageBox.Show("You've successfully added a new account");
+            decimal startBalance;
+            var chosenClient = clientCombo.SelectedItem as Client;
+            if (decimal.TryParse(balanceBox.Text, out startBalance) && chosenClient != null)
+            {
+                IAccount acc = Factory.Instance.GAccount();
+                acc.AddAccount(chosenClient.Id, startBalance);
+                UpdateAccount?.Invoke();
+                balanceBox.Text = null;
+                clientCombo.SelectedItem = null;
+                MessageBox.Show("You've successfully added a new account");
+            }
+            else
+                MessageBox.Show("Invalid input data");
         }
     }
 }

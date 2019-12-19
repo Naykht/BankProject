@@ -47,7 +47,6 @@ namespace BankManager
                 var tranwin = new AccountOperationWindow(acd);
                 tranwin.Show();
             }
-                
         }
     }
 }

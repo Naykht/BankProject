@@ -57,6 +57,7 @@ namespace BankManager
             };
             choiceLoan.ItemsSource = sample;
             choiceLoan.SelectedItem = "All";
+            sample.Remove("Expired");
             choiceDepo.ItemsSource = sample;
             choiceDepo.SelectedItem = "All";
         }
@@ -75,8 +76,7 @@ namespace BankManager
         {
             lStartBox.SelectedDate = null;
             lEndBox.SelectedDate = null;
-            loanList.ItemsSource = lo.Loans;
-            UpdateList();
+            UpdateLoan();
         }
         private void AddClient_Click(object sender, RoutedEventArgs e)//
         {
@@ -126,10 +126,9 @@ namespace BankManager
         }
         private void ResetDep_Click(object sender, RoutedEventArgs e)
         {
-            lStartBox.SelectedDate = null;
-            lEndBox.SelectedDate = null;
-            depList.ItemsSource = dep.Deposits;
-            UpdateList();
+            dStartBox.SelectedDate = null;
+            dEndBox.SelectedDate = null;
+            UpdateDep(); 
         }
         private void MakeDep_Click(object sender, RoutedEventArgs e)
         {
@@ -210,17 +209,21 @@ namespace BankManager
         }
         private void ExecuteTran_Click(object sender, RoutedEventArgs e)
         {
-            var startDt = Convert.ToDateTime(tStartBox.SelectedDate);
-            var endDt = Convert.ToDateTime(tEndBox.SelectedDate);
-            tranList.ItemsSource = tr.DateTran(startDt, endDt);
+            if (tStartBox.SelectedDate != null && tEndBox.SelectedDate != null && tStartBox.SelectedDate <= tEndBox.SelectedDate)
+            {
+                var now = DateTime.Now;
+                tranList.ItemsSource = null;
+                tranList.ItemsSource = tr.DateTran(tStartBox.SelectedDate ?? now, tEndBox.SelectedDate ?? now);
+            }
+            else
+                MessageBox.Show("Incorrect input data");
+            
         }
         private void TranResetButton_Click(object sender, RoutedEventArgs e)
         {
+            tStartBox.SelectedDate = null;
+            tEndBox.SelectedDate = null;
             UpdateTran();
-        }
-        private void MakeTranButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
         private void MakeDepo_Click(object sender, RoutedEventArgs e)
         {
@@ -244,6 +247,14 @@ namespace BankManager
                 dep.CloseDeposit(closeDe.DepId);
                 UpdateDep();
             }
+        }
+
+        private void AddTran_Click(object sender, RoutedEventArgs e)
+        {
+            var winAddTran = new MakeTransactionWindow();
+            winAddTran.UpdateTran += UpdateTran;
+            winAddTran.UpdateTran += UpdateAccount;
+            winAddTran.Show();
         }
     }
 }

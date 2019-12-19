@@ -20,7 +20,6 @@ namespace BankManager
     public partial class MakeTransactionWindow : Window
     {
         IAccount acc = Factory.Instance.GAccount();
-        ITransaction tr = Factory.Instance.GTransaction();
         public event Action UpdateTran;
         public MakeTransactionWindow()
         {
@@ -36,26 +35,21 @@ namespace BankManager
             var senderAccSelected = accSenderCombo.SelectedItem as Account;
             if (senderAccSelected == null)
                 MessageBox.Show("Please choose an account for the sender");
-            
-            else 
+            else
             {
-                senderAcc.Text = $"Account ID(sender): {senderAccSelected.AccId.ToString()}";
-             
-                
+                senderAcc.Text = senderAccSelected.AccId.ToString();
+                money.Text = senderAccSelected.Balance.ToString();
             }
-
         }
 
         private void selectRecButton_Click(object sender, RoutedEventArgs e)
         {
-            var senderAccSelected1 = accSenderCombo.SelectedItem as Account;
             var recAccSelected = accRecCombo.SelectedItem as Account;
-            if (recAccSelected != null && recAccSelected != senderAccSelected1)
-                recieverAcc.Text = $"Account ID(reciever): {recAccSelected.AccId.ToString()}";
-            else if (recAccSelected == senderAccSelected1)
-                MessageBox.Show("You can't send money to the same account");
+            if (recAccSelected == null)
+                MessageBox.Show("Please choose an account for the receiver");
             else
-                MessageBox.Show("Please choose an account for the reciever");
+                recieverAcc.Text = recAccSelected.AccId.ToString();
+            
         }
 
         private void ConfrimTranButton_Click(object sender, RoutedEventArgs e)
@@ -65,17 +59,20 @@ namespace BankManager
                 MessageBox.Show("Invalid input data");
             else if (decimal.Parse(money.Text) < am)
                 MessageBox.Show("Account has insufficient funds");
+            else if (senderAcc.Text == recieverAcc.Text)
+                MessageBox.Show("You cannot idk");
             else
             {
-                var senderAccSelected1 = accSenderCombo.SelectedItem as Account;
-                int idSen = senderAccSelected1.AccId;
-                var recAccSelected = accRecCombo.SelectedItem as Account;
-                int idRec = recAccSelected.AccId;
-                var date = DateTime.Now;
-                var amount = decimal.Parse(money.Text);
-                tr.AddTran(idSen, idRec, amount, date);
+                ITransaction tr = Factory.Instance.GTransaction();
+                tr.AddTran(int.Parse(senderAcc.Text), int.Parse(recieverAcc.Text), am);
                 UpdateTran?.Invoke();
-                Close();
+                MessageBox.Show("Transaction has been successfully made");
+                amountBox.Text = null;
+                accRecCombo.SelectedItem = null;
+                accSenderCombo.SelectedItem = null;
+                money.Text = null;
+                senderAcc.Text = null;
+                recieverAcc.Text = null;
             }
         }
     }
