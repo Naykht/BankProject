@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="" Height="400" Width="900">
     <TabControl TabStripPlacement="Left">
-        <TabItem Header="Clients" Height="75">
+        <TabItem Header="Clients" Height="74">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -21,7 +21,7 @@
                             <GridViewColumn Width="70" Header="Birth Date" DisplayMemberBinding="{Binding BirthDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
                             <GridViewColumn Width="200" Header="Email" DisplayMemberBinding="{Binding Email}"/>
                             <GridViewColumn Width="90" Header="Phone" DisplayMemberBinding="{Binding Phone}"/>
-                            <GridViewColumn  Width="130"  Header="Address" DisplayMemberBinding="{Binding Address}"/>
+                            <GridViewColumn  Width="Auto"  Header="Address" DisplayMemberBinding="{Binding Address}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -33,19 +33,19 @@
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem Header="Accounts" Height="75" >
+        <TabItem Header="Accounts" Height="74">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="650"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <ListView Grid.Column="0" Name="accountList" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
-                            <GridViewColumn Header="Client Id" DisplayMemberBinding="{Binding ClientId}"/>
-                            <GridViewColumn Header="Balance" DisplayMemberBinding="{Binding Balance}"/>
-                            <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"/>
+                            <GridViewColumn Width="100" Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
+                            <GridViewColumn Width="100" Header="Client Id" DisplayMemberBinding="{Binding ClientId}"/>
+                            <GridViewColumn Width="150" Header="Status" DisplayMemberBinding="{Binding Status}"/>
+                            <GridViewColumn Width="150" Header="Balance" DisplayMemberBinding="{Binding Balance}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -59,23 +59,23 @@
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem Header="Loans" Height="75">
+        <TabItem Header="Loans" Height="74">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="630"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 
-                <ListView Name="loanList">
+                <ListView Name="loanList" Width="Auto">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Loan Id" DisplayMemberBinding="{Binding LoanId}"/>
-                            <GridViewColumn Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
-                            <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
-                            <GridViewColumn Header="Percent" DisplayMemberBinding="{Binding Percent}"/>
-                            <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
-                            <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
-                            <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"/>
+                            <GridViewColumn Width="70" Header="Loan Id" DisplayMemberBinding="{Binding LoanId}"/>
+                            <GridViewColumn Width="70" Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
+                            <GridViewColumn Width="130" Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
+                            <GridViewColumn Width="80" Header="Percent" DisplayMemberBinding="{Binding Percent}"/>
+                            <GridViewColumn Width="80" Header="Start Date" DisplayMemberBinding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <GridViewColumn Width="80" Header="End Date" DisplayMemberBinding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <GridViewColumn Width="70" Header="Status" DisplayMemberBinding="{Binding Status}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -85,30 +85,30 @@
                     <DatePicker Name="lStartBox"></DatePicker>
                     <TextBlock Margin="10 5 0 2">End Date</TextBlock>
                     <DatePicker Name="lEndBox"></DatePicker>
-                    <ListView Name="choiceLoan" Height="85" Width="60"></ListView>
+                    <ListView Name="choiceLoan" Height="85" Width="60" Margin="0 10 0 0"></ListView>
                     <Button Margin="10 10" Click="DateLoan_Click">Execute</Button>
                     <Button Margin="10 1" Click="ResetLoan_Click">Reset</Button>
-                    <TextBlock></TextBlock>
-                    <Button Margin="10"  Click="MakeLoan_Click">Make A Loan</Button>
+                    <Button   Click="MakeLoan_Click" Margin="10 30 10 10">Make A Loan</Button>
                     <Button Margin="10"  Click="CloseLoan_Click">Close A Loan</Button>
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem Header="Deposits" Height="75">
+        <TabItem Header="Deposits" Height="74">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="630"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <ListView Name="depList">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Deposit Id" DisplayMemberBinding="{Binding DepId}"/>
-                            <GridViewColumn Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
-                            <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
-                            <GridViewColumn Header="Percent" DisplayMemberBinding="{Binding Percent}"/>
-                            <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
-                            <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <GridViewColumn Width="70"  Header="Deposit Id" DisplayMemberBinding="{Binding DepId}"/>
+                            <GridViewColumn Width="70" Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
+                            <GridViewColumn Width="120" Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
+                            <GridViewColumn Width="80" Header="Percent" DisplayMemberBinding="{Binding Percent}"/>
+                            <GridViewColumn Width="80" Header="Start Date" DisplayMemberBinding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <GridViewColumn Width="80" Header="End Date" DisplayMemberBinding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <GridViewColumn Width="80" Header="Status" DisplayMemberBinding="{Binding Status}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -125,20 +125,20 @@
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem Header="Transactions" Height="75">
+        <TabItem Header="Transactions" Height="74">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="600"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <ListView Name="tranList">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Transaction Id" DisplayMemberBinding="{Binding TranId}"/>
-                            <GridViewColumn Header="From" DisplayMemberBinding="{Binding From}"/>
-                            <GridViewColumn Header="To" DisplayMemberBinding="{Binding To}"/>
-                            <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
-                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                            <GridViewColumn Width="100" Header="Transaction Id" DisplayMemberBinding="{Binding TranId}"/>
+                            <GridViewColumn Width="100" Header="From, Account Id" DisplayMemberBinding="{Binding From}"/>
+                            <GridViewColumn Width="100" Header="To, Account Id" DisplayMemberBinding="{Binding To}"/>
+                            <GridViewColumn Width="150" Header="Amount" DisplayMemberBinding="{Binding Amount}"/>
+                            <GridViewColumn Width="80" Header="Date" DisplayMemberBinding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}"/>
     
                         </GridView>
                     </ListView.View>
@@ -149,10 +149,10 @@
                     <DatePicker Name="tStartBox"></DatePicker>
                     <TextBlock Margin="10 5 0 2">End Date</TextBlock>
                     <DatePicker Name="tEndBox"></DatePicker>
-                    <Button Name="ExecuteButton" Click="ExecuteButton_Click"  Margin="10 10" >Execute</Button>
+                    <Button Name="ExecuteButton" Click="ExecuteTran_Click"  Margin="10 10" >Execute</Button>
                     <Button Name="TranResetButton" Click="TranResetButton_Click" Margin="10 1" >Reset</Button>
                     <TextBlock></TextBlock>
-                    <Button   >Make A Transacation</Button>
+                    <Button>Make A Transacation</Button>
                 </StackPanel>
             </Grid>
         </TabItem>
