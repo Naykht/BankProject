@@ -22,7 +22,7 @@ namespace BankManager
     {
         IClient cl = Factory.Instance.GClient();
         Client clien;
-        public event Action<List<Client>> UpdateClient;
+        public event Action UpdateClient;
         public EditClientWindow(Client cd)
         {
             InitializeComponent();
@@ -51,7 +51,7 @@ namespace BankManager
             {
                 DateTime date = birthBox.SelectedDate ?? DateTime.Now;
                 cl.EditClient(name, date, email, phone, address, clien.Id);
-                UpdateClient?.Invoke(cl.Clients);
+                UpdateClient?.Invoke();
                 Close();
                 MessageBox.Show("Changes have been saved");
             }

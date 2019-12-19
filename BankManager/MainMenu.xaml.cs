@@ -83,10 +83,11 @@ namespace BankManager
             winClAdd.UpdateClient += UpdateClient; 
             winClAdd.Show();
         }
-        public void UpdateClient(List<Client> cliends)
+        public void UpdateClient()
         {
             clientList.ItemsSource = null;
-            clientList.ItemsSource = cliends;
+            cl = Factory.Instance.GClient();
+            clientList.ItemsSource = cl.Clients;
         }
         private void EditClient_Click(object sender, RoutedEventArgs e)
         {
@@ -139,18 +140,23 @@ namespace BankManager
             winAddLoan.UpdateLoan += UpdateLoan;
             winAddLoan.Show();
         }
-        public void UpdateLoan(List<Loan> loads)
+        public void UpdateLoan()
         {
             loanList.ItemsSource = null;
-            loanList.ItemsSource = loads;
+            lo = Factory.Instance.GLoan();
+            loanList.ItemsSource = lo.Loans;
         }
 
         private void CloseLoan_Click(object sender, RoutedEventArgs e)
         {
             var closeLo = loanList.SelectedItem as Loan;
-            lo.CloseLoan(closeLo.LoanId);
-            loanList.ItemsSource = lo.Loans;
-            loanList.ItemsSource = null;
+            if (closeLo != null)
+            {
+                lo.CloseLoan(closeLo.LoanId);
+                UpdateLoan();
+            }
+            else
+                MessageBox.Show("Please select a loan");
         }
     }
 }

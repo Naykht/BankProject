@@ -21,7 +21,7 @@ namespace BankManager
     {
         IAccount acc = Factory.Instance.GAccount();
         ILoan lo = Factory.Instance.GLoan();
-        public event Action<List<Loan>> UpdateLoan; 
+        public event Action UpdateLoan; 
         public AddLoanWindow()
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace BankManager
             {
                 var now = DateTime.Now;
                 lo.AddLoan(accId.AccId, am, en ?? now, p);
-                UpdateLoan?.Invoke(lo.Loans);
+                UpdateLoan?.Invoke();
                 MessageBox.Show("You've successfully added a new loan");
                 Close();
                

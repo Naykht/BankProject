@@ -21,7 +21,7 @@ namespace BankManager
     public partial class AddClientWindow : Window
     {
         IClient cl = Factory.Instance.GClient();
-        public event Action<List<Client>> UpdateClient;
+        public event Action UpdateClient;
         public AddClientWindow()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace BankManager
             {
                 DateTime date = birthBox.SelectedDate ?? DateTime.Now;
                 cl.AddClient(name, date, email, phone, address);
-                UpdateClient?.Invoke(cl.Clients);
+                UpdateClient?.Invoke();
                 Close();
                 MessageBox.Show("You successfully added new client");
                 

@@ -13,7 +13,7 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
-                <ListView Grid.Column="0" Name="clientList">
+                <ListView Grid.Column="0" Name="clientList" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="50" Header="Client Id" DisplayMemberBinding="{Binding Id}"/>
@@ -21,7 +21,7 @@
                             <GridViewColumn Width="70" Header="Birth Date" DisplayMemberBinding="{Binding BirthDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
                             <GridViewColumn Width="200" Header="Email" DisplayMemberBinding="{Binding Email}"/>
                             <GridViewColumn Width="90" Header="Phone" DisplayMemberBinding="{Binding Phone}"/>
-                            <GridViewColumn Width="130" Header="Address" DisplayMemberBinding="{Binding Address}"/>
+                            <GridViewColumn  Width="130"  Header="Address" DisplayMemberBinding="{Binding Address}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
