@@ -21,6 +21,7 @@ namespace banks
     {
         List<Account> Accounts { get; }
         List<Account> ClAcc(int id);
+        void AddAccount(int clientId, decimal balance);
     }
     public interface ILoan
     {
@@ -131,6 +132,18 @@ namespace banks
                 DepId = Deposits.Max(u => u.DepId) + 1
             };
             Deposits.Add(dep);
+            SaveData();
+        }
+        public void AddAccount(int clientId, decimal balance)
+        {
+            var ac = new Account
+            {
+                ClientId = clientId,
+                AccId = Accounts.Max(u => u.AccId) + 1,
+                Balance = balance,
+                Status = true
+            };
+            Accounts.Add(ac);
             SaveData();
         }
         public List<Loan> DateLoan(DateTime start, DateTime end, string c)
