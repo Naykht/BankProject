@@ -23,7 +23,7 @@ namespace banks
         List<Account> ClAcc(int id);
         void AddAccount(int clientId, decimal balance);
         void ChangeAccountStatus(Account acc);
-        void Take(int id, decimal amount);
+        void Money(int id, decimal amount, bool sign);
     }
     public interface ILoan
     {
@@ -208,11 +208,14 @@ namespace banks
             Loans.Add(lo);
             SaveData();
         }
-        public void Take(int id, decimal amount)
+        public void Money(int id, decimal amount, bool sign)
         {
             Account acc = Accounts.First(u => u.AccId == id);
             Accounts.RemoveAll(u => u.AccId == id);
-            acc.Balance = acc.Balance - amount;
+            if (sign)
+                acc.Balance = acc.Balance + amount;
+            else
+                acc.Balance = acc.Balance - amount;
             Accounts.Add(acc);
             SaveData();
         }

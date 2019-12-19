@@ -59,7 +59,7 @@ namespace BankManager
             
             choiceLoan.SelectedItem = "All";
         }
-        private void DateLoan_Click(object sender, RoutedEventArgs e)
+        private void DateLoan_Click(object sender, RoutedEventArgs e)//
         {
             var now = DateTime.Now;
             if (lStartBox.SelectedDate != null && lEndBox.SelectedDate != null && lStartBox.SelectedDate < lEndBox.SelectedDate)
@@ -189,6 +189,16 @@ namespace BankManager
             var accAddWin = new AddAccountWindow();
             accAddWin.UpdateAccount += UpdateAccount;
             accAddWin.Show();
+        }
+
+        private void ResetAcc_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateAccount();
+        }
+
+        private void ChangeAccountStatus_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

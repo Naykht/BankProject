@@ -50,11 +50,11 @@
                     </ListView.View>
                 </ListView>
                 <StackPanel Grid.Column="1">
-                    <TextBox Margin="10" Name="SearchAccgBox" Background="Beige" ></TextBox>
+                    <TextBox Margin="10" Name="SearchAccBox" Background="Beige" ></TextBox>
                     <Button x:Name="SearchButton" Margin="7" Click ="SearchButton_Click">Search by Id</Button>
-                    <Button x:Name="ResetButton" Click="ResetButton_Click" Margin="10">Reset</Button>
+                    <Button x:Name="ResetButton" Click="ResetAcc_Click" Margin="10">Reset</Button>
                     <Button x:Name="AddAccount" Click="AddAccount_Click" Margin="10">Add Account</Button>
-                    <Button x:Name="ChangeAccountStatus" Click="ChangeAccountStatus_Click" Margin="10">Change Account Status</Button>
+                    <Button x:Name="ChangeAccountStatus" Click="ChangeAccountStatus_Click"  Margin="10">Change Account Status</Button>
                     
                 </StackPanel>
             </Grid>

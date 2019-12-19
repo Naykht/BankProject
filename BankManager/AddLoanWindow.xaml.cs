@@ -48,7 +48,7 @@ namespace BankManager
                 int accId = int.Parse(curAcc.Text);
                 lo.AddLoan(accId, am, en ?? now, p);
                 UpdateLoan?.Invoke();
-                acc.Take(accId, am);
+                acc.Money(accId, am, false);
                 UpdateAccount?.Invoke();
                 Close();
                 MessageBox.Show("You've successfully added a new loan");
