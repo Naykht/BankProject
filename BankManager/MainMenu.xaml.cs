@@ -181,5 +181,10 @@ namespace BankManager
             accAddWin.UpdateAccount += UpdateAccount;
             accAddWin.Show();
         }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateAccount();
+        }
     }
 }
