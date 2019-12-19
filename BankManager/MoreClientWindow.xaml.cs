@@ -49,10 +49,5 @@ namespace BankManager
             }
                 
         }
-
-        private void Edit_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
     }
 }

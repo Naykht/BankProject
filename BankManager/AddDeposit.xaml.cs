@@ -29,12 +29,6 @@ namespace BankManager
             InitializeComponent();
             clientCombo.ItemsSource = acc.Accounts;
         }
-        private void SelectClient_Click(object sender, RoutedEventArgs e)
-        {
-            choCl = clientCombo.SelectedItem as Account;
-            curAcc.Text = choCl.AccId.ToString();
-            money.Text = choCl.Balance.ToString();
-        }
         private void MakeDeposit_Click(object sender, RoutedEventArgs e)
         {
             var en = EndBox.SelectedDate;
@@ -52,7 +46,7 @@ namespace BankManager
                 int accId = int.Parse(curAcc.Text);
                 dep.AddDeposit(accId, am, en ?? now, p);
                 UpdateDeposit?.Invoke();
-                acc.Money(accId, am, false);
+                acc.Money(accId, am);
                 UpdateAccount?.Invoke();
                 Close();
                 MessageBox.Show("You've successfully added a new deposit");

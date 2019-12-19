@@ -21,6 +21,8 @@ namespace BankManager
     {
         IAccount ac = Factory.Instance.GAccount();
         IClient cl = Factory.Instance.GClient();
+        decimal startBalance;
+        int chosenClientId;
         public event Action UpdateAccount;
         public AddAccountWindow()
         {
@@ -30,13 +32,14 @@ namespace BankManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var startBalance = Convert.ToDecimal(balanceBox.Text);
-            var chosenClientId = (clientCombo.SelectedItem as Client).Id ;
+            startBalance = Convert.ToDecimal(balanceBox.Text);
+            chosenClientId = (clientCombo.SelectedItem as Client).Id ;
 
             ac.AddAccount(chosenClientId, startBalance);
             UpdateAccount?.Invoke();
-            Close();
-
+            balanceBox.Text = null;
+            clientCombo.SelectedItem = null;
+            MessageBox.Show("You've successfully added a new account");
         }
     }
 }
