@@ -47,6 +47,7 @@ namespace banks
         List<Transaction> Transactions { get; }
         List<Transaction> DateTran(DateTime start, DateTime end);
         List<Transaction> AccTran(int id);
+        void AddTran(int idSen, int idRec, decimal amount, DateTime dateTime);
 
     }
     
@@ -217,6 +218,20 @@ namespace banks
             acc.Balance = acc.Balance + amount;
             Accounts.Add(acc);
             SaveData();
+        }
+        public void AddTran(int idSen, int idRec, decimal amount, DateTime dateTime)
+        {
+            var tr = new Transaction
+            {
+                From = idSen,
+                To = idRec,
+                Amount = amount,
+                Date = dateTime,
+                TranId = Transactions.Max(u => u.TranId) + 1
+            };
+            Transactions.Add(tr);
+            SaveData();
+
         }
     }
     public class BankDataJson: BankData, IGetData

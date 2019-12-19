@@ -225,7 +225,9 @@ namespace BankManager
 
         private void MakeTranButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var makeTranWindow = new MakeTransactionWindow();
+            makeTranWindow.UpdateTran += UpdateTran;
+            makeTranWindow.Show();
         }
     }
 }
