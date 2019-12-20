@@ -27,8 +27,9 @@ namespace BankManager
             InitializeComponent();
             clientCombo.ItemsSource = acc.Accounts;
         }
-        private void MakeDeposit_Click(object sender, RoutedEventArgs e)
+        private void MakeDeposit_Click(object sender, RoutedEventArgs e)//kirill
         {
+            var now = DateTime.Now;
             var en = EndBox.SelectedDate;
             decimal am;
             decimal p;
@@ -38,10 +39,11 @@ namespace BankManager
                 MessageBox.Show("Invalid input data");
             else if (decimal.Parse(money.Text) < am)
                 MessageBox.Show("Account has insufficient funds");
+            else if (en < now.AddYears(1))
+                MessageBox.Show("Minimum holding period of deposit is one year!");
             else
             {
                 IDeposit dep = Factory.Instance.GDeposit();
-                var now = DateTime.Now;
                 int accId = int.Parse(curAcc.Text);
                 dep.AddDeposit(accId, am, en ?? now, p);
                 UpdateDeposit?.Invoke();

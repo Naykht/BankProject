@@ -237,18 +237,19 @@ namespace BankManager
         {
             var closeDe = depList.SelectedItem as Deposit;
             if (closeDe == null)
-                MessageBox.Show("Please select a loan");
+                MessageBox.Show("Please select a deposit");
             else if (closeDe.Status == "Expired")
-                MessageBox.Show("You cannot close this loan, because it is expired");
+                MessageBox.Show("You cannot close this deposit, because it is expired");
             else if (closeDe.Status == "Closed")
-                MessageBox.Show("This loan is already closed");
+                MessageBox.Show("This deposit is already closed");
+            else if (closeDe.StartDate.AddYears(1) < DateTime.Now)
+                MessageBox.Show("Deposit period isn't over! So you can't close that deposit.");
             else
             {
                 dep.CloseDeposit(closeDe.DepId);
                 UpdateDep();
             }
         }
-
         private void AddTran_Click(object sender, RoutedEventArgs e)
         {
             var winAddTran = new MakeTransactionWindow();
