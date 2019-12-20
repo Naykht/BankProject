@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankManager"
         mc:Ignorable="d"
-        Title="" Height="Auto" MaxHeight="300" MaxWidth="1000" Width="Auto">
+        Title="" Background="CornflowerBlue" Height="Auto" MaxHeight="300" MaxWidth="1000" Width="Auto">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,9 +15,9 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="90"/>
         </Grid.ColumnDefinitions>
-        <ListBox>
+        <ListBox Background="CornflowerBlue">
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >Name</TextBlock>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="nBox"></TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  Name="nBox"></TextBlock>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >Birth Date</TextBlock>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="bBox"></TextBlock>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >Email</TextBlock>
@@ -25,10 +25,10 @@
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >Phone</TextBlock>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="pBox"></TextBlock>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >Address</TextBlock>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="aBox">1</TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="aBox"></TextBlock>
 
         </ListBox>
-        <ListView Grid.Column="1" Name="accList" Width="Auto">
+        <ListView Background="DeepSkyBlue" Grid.Column="1" Name="accList" Width="Auto" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
@@ -37,6 +37,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Width="70" Height="35" Grid.Column="2" Click="Operations_Click" >Operations</Button>
+        <Button  Width="70" Height="35" Grid.Column="2" Click="Operations_Click" >Operations</Button>
     </Grid>
 </Window>

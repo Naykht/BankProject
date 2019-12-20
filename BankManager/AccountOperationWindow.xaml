@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankManager"
         mc:Ignorable="d"
-        Title="" Height="300" Width="400">
-    <TabControl>
-        <TabItem Header="Transactions">
+        Title="" Background="CornflowerBlue" Height="300" Width="400">
+    <TabControl Background="CornflowerBlue">
+        <TabItem  Background="CornflowerBlue" Header="Transactions">
             <Grid>
                 
                 <DataGrid Name="TranData" Grid.Row="1" AutoGenerateColumns="False">
@@ -20,7 +20,7 @@
                 </DataGrid>
             </Grid>
         </TabItem>
-        <TabItem Header="Loans">
+        <TabItem Background="CornflowerBlue" Header="Loans">
             <Grid>
                 
                 <DataGrid Name="LoanData" Grid.Row="1" AutoGenerateColumns="False">
@@ -35,7 +35,7 @@
                 </DataGrid>
             </Grid>
         </TabItem>
-        <TabItem Header="Deposits">
+        <TabItem Background="CornflowerBlue" Header="Deposits">
             <Grid>
                 
                 <DataGrid Name="DepData" Grid.Row="1" AutoGenerateColumns="False">

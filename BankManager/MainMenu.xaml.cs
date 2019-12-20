@@ -270,5 +270,7 @@ namespace BankManager
             winAddTran.UpdateTran += UpdateAccount;
             winAddTran.Show();
         }
+
+       
     }
 }

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankManager"
         mc:Ignorable="d"
-        Title="" Height="290" Width="377">
-    <Grid>
+        Title="" Background="CornflowerBlue" Height="290" Width="377">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>

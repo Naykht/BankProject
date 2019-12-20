@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BankManager"
         mc:Ignorable="d"
         Title="" Height="240" Width="300">
-    <Grid>
+    <Grid Background="CornflowerBlue">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>

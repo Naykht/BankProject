@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankManager"
         mc:Ignorable="d"
-        Title="" Height="400" Width="900">
-    <TabControl TabStripPlacement="Left">
-        <TabItem Header="Clients" Height="74">
-            <Grid>
+        Title="" Background="CornflowerBlue" Height="400" Width="900">
+    <TabControl  Background="CornflowerBlue" TabStripPlacement="Left">
+        <TabItem   Header="Clients" Height="74">
+            <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
-                <ListView Grid.Column="0" Name="clientList" >
+                <ListView Background="DeepSkyBlue" Grid.Column="0" Name="clientList" >
                     <ListView.View>
-                        <GridView>
-                            <GridViewColumn Width="50" Header="Client Id" DisplayMemberBinding="{Binding Id}"/>
+                        <GridView >
+                            <GridViewColumn Width="50"  Header="Client Id" DisplayMemberBinding="{Binding Id}"/>
                             <GridViewColumn Width="200" Header="Name" DisplayMemberBinding="{Binding Name}"/>
                             <GridViewColumn Width="70" Header="Birth Date" DisplayMemberBinding="{Binding BirthDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
                             <GridViewColumn Width="200" Header="Email" DisplayMemberBinding="{Binding Email}"/>
@@ -33,13 +33,13 @@
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem Header="Accounts" Height="74" Margin="-2,0,0,0" VerticalAlignment="Bottom">
+        <TabItem  Header="Accounts" Height="74" Margin="-2,0,0,0" VerticalAlignment="Bottom">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <ListView Grid.Column="0" Name="accountList" >
+                <ListView Background="DeepSkyBlue" Grid.Column="0" Name="accountList" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="100" Header="Account Id" DisplayMemberBinding="{Binding AccId}"/>
@@ -65,8 +65,8 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                
-                <ListView Name="loanList" Width="Auto">
+
+                <ListView  Background="DeepSkyBlue" Name="loanList" Width="Auto" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="70" Header="Loan Id" DisplayMemberBinding="{Binding LoanId}"/>
@@ -99,7 +99,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <ListView Name="depList">
+                <ListView Background="DeepSkyBlue" Name="depList">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="70"  Header="Deposit Id" DisplayMemberBinding="{Binding DepId}"/>
@@ -133,7 +133,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <ListView Name="tranList">
+                <ListView Background="DeepSkyBlue" Name="tranList">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="100" Header="Transaction Id" DisplayMemberBinding="{Binding TranId}"/>
