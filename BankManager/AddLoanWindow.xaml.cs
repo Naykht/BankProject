@@ -33,29 +33,27 @@ namespace BankManager
             var en = EndBox.SelectedDate;
             decimal am;
             decimal p;
-            if (curAcc.Text == "-")
+            if (choCl == null)
                 MessageBox.Show("Please choose an account");
-            else if (en == null || !decimal.TryParse(amountBox.Text, out am) || !decimal.TryParse(percentBox.Text, out p))
+            else if (en == null || !decimal.TryParse(amountBox.Text, out am) || !decimal.TryParse(percentBox.Text.Replace(".",","), out p))
                 MessageBox.Show("Invalid input data");
             else
             {
                 ILoan lo = Factory.Instance.GLoan();
                 var now = DateTime.Now;
-                int accId = int.Parse(curAcc.Text);
+                int accId = choCl.AccId;
                 lo.AddLoan(accId, am, en ?? now, p);
                 UpdateLoan?.Invoke();
-                curAcc.Text = null;
-                amountBox.Text = null;
-                percentBox.Text = null;
+                amountBox.Text = "30000";
+                percentBox.Text = "8";
                 EndBox.SelectedDate = null;
                 clientCombo.SelectedItem = null;
                 MessageBox.Show("You've successfully added a new loan");
             }
         }
-        private void SelectClient_Click(object sender, RoutedEventArgs e)
+        private void clientCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             choCl = clientCombo.SelectedItem as Account;
-            curAcc.Text = choCl.AccId.ToString();
         }
     }
 }

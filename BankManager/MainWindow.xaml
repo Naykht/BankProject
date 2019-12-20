@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="250" Width="1000">
     <Grid>
-        <Button Padding="10 5" Background="Aquamarine" Click="Button_Click">Log In</Button>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Padding="10 5" Grid.Row="0" Background="Aquamarine" Click="Button_Click">Log In</Button>
+        <TextBox Grid.Row="1" Text="{Binding ElementName=sValue, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+        <Slider Grid.Row="2" Maximum="5000000" TickFrequency="1000" IsSnapToTickEnabled="True" Name="sValue"/>
     </Grid>
 </Window>

@@ -168,6 +168,8 @@ namespace banks
                 Date = DateTime.Now.Date,
                 TranId = w
             };
+            Money(id, -amount);
+            Money(to, amount);
             Transactions.Add(trab);
             SaveData();
         }

@@ -21,15 +21,12 @@
             <ColumnDefinition Width="110"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-
-        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">Amount</TextBlock>
-        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">Account Id</TextBlock>
-        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">Available Amount</TextBlock>
-        <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">End Date</TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Name="curAcc" VerticalAlignment="Center">-</TextBlock>
-        <TextBlock Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center">Percent</TextBlock>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="money" Grid.Row="3" Grid.Column="1">0</TextBlock>
-        <ComboBox Name="clientCombo" Grid.ColumnSpan="2"  Margin="75 7 75 7">
+        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">Amount</TextBlock>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">Available Amount</TextBlock>
+        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">End Date</TextBlock>
+        <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">Percent</TextBlock>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="money" Grid.Row="1" Grid.Column="1">0</TextBlock>
+        <ComboBox Name="clientCombo" Grid.ColumnSpan="2"  Margin="75 7 75 7" SelectionChanged="clientCombo_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -38,11 +35,11 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <DatePicker Grid.Row="5" Grid.Column="1" Name="EndBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"></DatePicker>
-        <TextBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="amountBox" Width="180"></TextBox>
-        <TextBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="percentBox" Width="180"></TextBox>
-
+        <DatePicker Grid.Row="4" Grid.Column="1" Name="EndBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"></DatePicker>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ElementName=amSlid, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Name="amountBox" Width="180"></TextBox>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding ElementName=perSlid, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Name="percentBox" Width="180"></TextBox>
+        <Slider Margin="20 10 20 0" Grid.Row="3" Grid.ColumnSpan="2" Maximum="500000" Minimum="30000" TickFrequency="1000" IsSnapToTickEnabled="True" Name="amSlid"/>
         <Button Grid.Row="7" Grid.ColumnSpan="2" Width="150" Height="20" Click="MakeDeposit_Click">Make A Deposit</Button>
-        <Button Grid.Row="1" Grid.ColumnSpan="2" Width="150" Height="20" Click="ClientSelect_Click">Select an account</Button>
+        <Slider Margin="20 10 20 0" Grid.Row="6" Grid.ColumnSpan="2" Maximum="7" Minimum="3" TickFrequency="0.1" IsSnapToTickEnabled="True" Name="perSlid"/>
     </Grid>
 </Window>

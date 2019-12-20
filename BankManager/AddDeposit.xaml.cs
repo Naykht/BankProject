@@ -32,33 +32,33 @@ namespace BankManager
             var en = EndBox.SelectedDate;
             decimal am;
             decimal p;
-            if (curAcc.Text == "-")
+            if (choCl == null)
                 MessageBox.Show("Please choose an account");
-            else if (en == null || !decimal.TryParse(amountBox.Text, out am) || !decimal.TryParse(percentBox.Text, out p))
+            else if (en == null || !decimal.TryParse(amountBox.Text, out am) || !decimal.TryParse(percentBox.Text.Replace(".", ","), out p))
                 MessageBox.Show("Invalid input data");
-            else if (decimal.Parse(money.Text) < am)
+            else if (choCl.Balance < am)
                 MessageBox.Show("Account has insufficient funds");
             else
             {
                 IDeposit dep = Factory.Instance.GDeposit();
                 var now = DateTime.Now;
-                int accId = int.Parse(curAcc.Text);
+                int accId = choCl.AccId;
                 dep.AddDeposit(accId, am, en ?? now, p);
                 UpdateDeposit?.Invoke();
-                curAcc.Text = null;
-                money.Text = null;
-                amountBox.Text = null;
-                percentBox.Text = null;
+                amountBox.Text = "30000";
+                percentBox.Text = "3";
                 EndBox.SelectedDate = null;
                 clientCombo.SelectedItem = null;
                 MessageBox.Show("You've successfully added a new deposit");
             }
         }
-        private void ClientSelect_Click(object sender, RoutedEventArgs e)
+        private void clientCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             choCl = clientCombo.SelectedItem as Account;
-            curAcc.Text = choCl.AccId.ToString();
-            money.Text = choCl.Balance.ToString();
+            if (choCl == null)
+                money.Text = "0";
+            else
+                money.Text = choCl.Balance.ToString();
         }
     }
 }

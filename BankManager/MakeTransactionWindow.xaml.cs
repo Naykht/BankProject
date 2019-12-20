@@ -21,59 +21,48 @@ namespace BankManager
     {
         IAccount acc = Factory.Instance.GAccount();
         public event Action UpdateTran;
+        Account recAcc;
+        Account senAcc;
         public MakeTransactionWindow()
         {
             InitializeComponent();
             accSenderCombo.ItemsSource = acc.Accounts;
             accRecCombo.ItemsSource = acc.Accounts;
         }
-
-
-        private void selectSenButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-            var senderAccSelected = accSenderCombo.SelectedItem as Account;
-            if (senderAccSelected == null)
-                MessageBox.Show("Please choose an account for the sender");
-            else
-            {
-                senderAcc.Text = senderAccSelected.AccId.ToString();
-                money.Text = senderAccSelected.Balance.ToString();
-            }
-        }
-
-        private void selectRecButton_Click(object sender, RoutedEventArgs e)
-        {
-            var recAccSelected = accRecCombo.SelectedItem as Account;
-            if (recAccSelected == null)
-                MessageBox.Show("Please choose an account for the receiver");
-            else
-                recieverAcc.Text = recAccSelected.AccId.ToString();
-            
-        }
-
         private void ConfrimTranButton_Click(object sender, RoutedEventArgs e)
         {
             decimal am;
-            if (!decimal.TryParse(amountBox.Text, out am))
+            if (recAcc == null || senAcc == null)
+                MessageBox.Show("Please select sender and receiver accounts");
+            else if (!decimal.TryParse(amountBox.Text, out am))
                 MessageBox.Show("Invalid input data");
             else if (decimal.Parse(money.Text) < am)
                 MessageBox.Show("Account has insufficient funds");
-            else if (senderAcc.Text == recieverAcc.Text)
+            else if (senAcc.AccId == recAcc.AccId)
                 MessageBox.Show("You cannot idk");
             else
             {
                 ITransaction tr = Factory.Instance.GTransaction();
-                tr.AddTran(int.Parse(senderAcc.Text), int.Parse(recieverAcc.Text), am);
+                tr.AddTran(senAcc.AccId, recAcc.AccId, am);
                 UpdateTran?.Invoke();
                 MessageBox.Show("Transaction has been successfully made");
-                amountBox.Text = null;
+                amountBox.Text = "0";
                 accRecCombo.SelectedItem = null;
                 accSenderCombo.SelectedItem = null;
-                money.Text = null;
-                senderAcc.Text = null;
-                recieverAcc.Text = null;
+                
             }
+        }
+        private void accSenderCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            senAcc = accSenderCombo.SelectedItem as Account;
+            if (senAcc == null)
+                money.Text = null;
+            else
+                money.Text = senAcc.Balance.ToString();
+        }
+        private void accRecCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            recAcc = accRecCombo.SelectedItem as Account;
         }
     }
 }

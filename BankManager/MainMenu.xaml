@@ -113,7 +113,7 @@
                     </ListView.View>
                 </ListView>
                 <StackPanel Grid.Column="1">
-                    <TextBlock Margin="0 10 0 0" HorizontalAlignment="Center">Set an interval</TextBlock>
+                    <TextBlock  HorizontalAlignment="Center">Set an interval</TextBlock>
                     <TextBlock Margin="10 10 0 2">Start Date</TextBlock>
                     <DatePicker Name="dStartBox"></DatePicker>
                     <TextBlock Margin="10 5 0 2">End Date</TextBlock>

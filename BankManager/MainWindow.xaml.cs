@@ -32,5 +32,6 @@ namespace BankManager
             win.Show();
             Close();
         }
+
     }
 }
