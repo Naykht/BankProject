@@ -37,6 +37,6 @@
         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding ElementName=percentSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Name="percentBox" Width="180"></TextBox>
         <Button Grid.Row="6" Grid.ColumnSpan="2" Width="150" Height="20" Click="MakeLoan_Click">Make A Loan</Button>
         <Slider Grid.Row="2" Grid.ColumnSpan="2" Margin="20 10 20 0" Maximum="500000" Minimum="30000" TickFrequency="1000" IsSnapToTickEnabled="True" Name="amountSlider"/>
-        <Slider Grid.Row="5" Grid.ColumnSpan="2" Margin="20 10 20 0" Maximum="15" TickFrequency="0.1" Minimum="8" IsSnapToTickEnabled="True" Name="percentSlider"/>
+        <Slider Grid.Row="5" Grid.ColumnSpan="2" Margin="20 10 20 0" Maximum="15" TickFrequency="1" Minimum="8" IsSnapToTickEnabled="True" Name="percentSlider"/>
     </Grid>
 </Window>

@@ -1,1 +1,525 @@
-{"Clients":[{"Id":1,"Name":"Aleksandr Khan Vitalevich","BirthDate":"2000-06-26T00:00:00","Email":"khanaleks2000@gmail.com","Phone":"89035882223","Address":"Mitinskaya Street, 10k1"},{"Id":2,"Name":"Igor Kruglov","BirthDate":"2000-12-09T00:00:00","Email":"round@ru","Phone":"1112131231","Address":"5shose dom 12"},{"Id":3,"Name":"Kirill","BirthDate":"2019-12-06T00:00:00","Email":"carp@","Phone":"123","Address":"weqcq"}],"Accounts":[{"ClientId":1,"AccId":1,"Balance":47481.0000,"Status":true},{"ClientId":4,"AccId":3,"Balance":-169.0,"Status":true},{"ClientId":3,"AccId":4,"Balance":1000.0,"Status":true},{"ClientId":1,"AccId":2,"Balance":75500.0,"Status":true}],"Transactions":[{"TranId":1,"From":1,"To":2,"Amount":1350.0,"Date":"2019-11-01T00:00:00"},{"TranId":2,"From":1,"To":3,"Amount":900.0,"Date":"2019-12-20T00:00:00+03:00"},{"TranId":3,"From":1,"To":2,"Amount":800.0,"Date":"2019-12-20T00:00:00+03:00"},{"TranId":4,"From":3,"To":2,"Amount":200.0,"Date":"2019-12-20T00:00:00+03:00"},{"TranId":5,"From":3,"To":2,"Amount":200.0,"Date":"2019-12-20T00:00:00+03:00"},{"TranId":6,"From":4,"To":2,"Amount":500.0,"Date":"2019-12-20T00:00:00+03:00"},{"TranId":7,"From":4,"To":2,"Amount":500.0,"Date":"2019-12-20T00:00:00+03:00"}],"Loans":[{"LoanId":3,"AccId":2,"Amount":373000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2019-12-31T00:00:00","Percent":2.0,"Status":"Active"},{"LoanId":4,"AccId":1,"Amount":48000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2020-01-01T00:00:00","Percent":8.0,"Status":"Active"},{"LoanId":2,"AccId":1,"Amount":80000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2019-12-11T00:00:00","Percent":1.0,"Status":"Expired"},{"LoanId":5,"AccId":1,"Amount":30000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2019-12-31T00:00:00","Percent":12.600000000000001,"Status":"Closed"},{"LoanId":1,"AccId":1,"Amount":1000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2020-01-01T00:00:00","Percent":12.0,"Status":"Closed"},{"LoanId":6,"AccId":1,"Amount":30000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2020-01-02T00:00:00","Percent":8.0,"Status":"Closed"}],"Deposits":[{"DepId":1,"AccId":1,"Amount":100000.0,"StartDate":"2019-01-01T00:00:00","EndDate":"2019-03-03T00:00:00","Percent":10.0,"Status":"Expired"},{"DepId":4,"AccId":1,"Amount":75000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2019-12-19T00:00:00","Percent":9.2,"Status":"Closed"},{"DepId":4,"AccId":1,"Amount":75000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2019-12-19T00:00:00","Percent":9.2,"Status":"Closed"},{"DepId":5,"AccId":2,"Amount":30000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2019-12-25T00:00:00","Percent":3.0,"Status":"Active"},{"DepId":6,"AccId":1,"Amount":119000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2019-12-31T00:00:00","Percent":4.0,"Status":"Active"},{"DepId":7,"AccId":2,"Amount":62000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2019-12-27T00:00:00","Percent":3.3,"Status":"Active"},{"DepId":8,"AccId":2,"Amount":30000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2020-01-01T00:00:00","Percent":4.0,"Status":"Active"},{"DepId":9,"AccId":2,"Amount":30000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2019-12-28T00:00:00","Percent":3.0,"Status":"Active"},{"DepId":10,"AccId":2,"Amount":147000.0,"StartDate":"2019-12-20T00:00:00+03:00","EndDate":"2019-12-27T00:00:00","Percent":7.0,"Status":"Active"}]}
+{
+  
+  "Clients": [
+    {
+      "Id": 1,
+      "Name": "Aleksandr Khan Vitalevich",
+      "BirthDate": "2000-06-26T00:00:00",
+      "Email": "khanaleks2000@gmail.com",
+      "Phone": "89035882223",
+      "Address": "Mitinskaya Street, 10k1, 341"
+    },
+    {
+      "Id": 2,
+      "Name": "Igor Kruglov Eduardovich",
+      "BirthDate": "2000-12-09T00:00:00",
+      "Email": "round@ru",
+      "Phone": "1112131231",
+      "Address": "Pyatnickoe Shose Street, 11k2, 243"
+    },
+    {
+      "Id": 3,
+      "Name": "Yaroslav Egerev Igorevich",
+      "BirthDate": "2000-10-28T00:00:00",
+      "Email": "dub@gmail.com",
+      "Phone": "89012349840",
+      "Address": "Selo Anosino, 24"
+    },
+    {
+      "Id": 4,
+      "Name": "Nikita Davankov Aleksandrovich",
+      "BirthDate": "2001-04-14T00:00:00",
+      "Email": "2222222@gmail.com",
+      "Phone": "89034323245",
+      "Address": "Selo kovcheg, Krasnaya Street, 12"
+    },
+    {
+      "Id": 5,
+      "Name": "Akinin Vladislav Andreivich",
+      "BirthDate": "2001-04-03T00:00:00",
+      "Email": "kosmostar@gmail.com",
+      "Phone": "89072987465",
+      "Address": "Sadovaya Street, 26"
+    },
+    {
+      "Id": 6,
+      "Name": "Larkov Aleksandr Nikitovich",
+      "BirthDate": "2000-10-09T00:00:00",
+      "Email": "kruchu@gmail.com",
+      "Phone": "18916439007",
+      "Address": "Central Moscow Street, 57, 129"
+    },
+    {
+      "Id": 7,
+      "Name": "Likhov Andrey Andreivich",
+      "BirthDate": "2000-02-09T00:00:00",
+      "Email": "round@ru",
+      "Phone": "89994739201",
+      "Address": "Ryadom S Vladom Street, 6"
+    },
+    {
+      "Id": 8,
+      "Name": "Zvezding Grigory Leonidovich",
+      "BirthDate": "2000-05-30T00:00:00",
+      "Email": "calvin@gmail.com",
+      "Phone": "89045401134",
+      "Address": "Yasenevo Strett, 43, 777"
+    },
+    {
+      "Id": 9,
+      "Name": "Ozbetelashvili Georgy Otashovich",
+      "BirthDate": "2000-08-22T00:00:00",
+      "Email": "plovsrisov@gmai.com",
+      "Phone": "89012329948",
+      "Address": "Nepodaleku Ot Yasenevo Street, 43k1, 44"
+    },
+    {
+      "Id": 10,
+      "Name": "Polikarpov Kirill Urievich",
+      "BirthDate": "1999-07-27T00:00:00",
+      "Email": "economikaIsLife@gmail.com",
+      "Phone": "9871238411",
+      "Address": "Odincovo Street, 1"
+    },
+    {
+      "Id": 11,
+      "Name": "Ilinskaya Polina Mashavna",
+      "BirthDate": "2000-12-20T00:00:00",
+      "Email": "pretty@gmail.com",
+      "Phone": "890123218704",
+      "Address": "Somewhere Near Krug Street, 12, 94"
+    },
+    {
+      "Id": 12,
+      "Name": "Maria Andreeva Alisherovna",
+      "BirthDate": "1988-10-20T00:00:00",
+      "Email": "andreeva1805@gmail.com",
+      "Phone": "89123129012",
+      "Address": "Strogino Street, 59, 4239"
+    },
+    {
+      "Id": 13,
+      "Name": "Sinojenskiy Ivan Ivanovich",
+      "BirthDate": "1995-05-07T00:00:00",
+      "Email": "belarus@gmail.com",
+      "Phone": "98112123123",
+      "Address": "Belaruskaya Street, 76k1, 21342"
+    },
+    {
+      "Id": 14,
+      "Name": "Jumaeva Elizaveta Igorevna",
+      "BirthDate": "1995-07-18T00:00:00",
+      "Email": "gucci@gmail.com",
+      "Phone": "98102123399",
+      "Address": "Gucci Land Street, 12, 54"
+    },
+    {
+      "Id": 15,
+      "Name": "Kondratmevna Unona Andreevna",
+      "BirthDate": "1979-10-01T00:00:00",
+      "Email": "arkhitecture@gmail.com",
+      "Phone": "89014376431",
+      "Address": "Said Like Your Look Street, 321, 312"
+    },
+    {
+      "Id": 16,
+      "Name": "Kroglova Elena Zabil",
+      "BirthDate": "1969-01-22T00:00:00",
+      "Email": "mamaigorya@gmail.com",
+      "Phone": "89012883276",
+      "Address": "Pyatnisckoe Shose Street. 11k2"
+    }
+  ],
+  "Accounts": [
+    {
+      "ClientId": 6,
+      "AccId": 9,
+      "Balance": 43333.0,
+      "Status": true
+    },
+    {
+      "ClientId": 1,
+      "AccId": 13,
+      "Balance": 630901.0,
+      "Status": true
+    },
+    {
+      "ClientId": 11,
+      "AccId": 16,
+      "Balance": 3124.0,
+      "Status": true
+    },
+    {
+      "ClientId": 13,
+      "AccId": 18,
+      "Balance": 15881.0,
+      "Status": true
+    },
+    {
+      "ClientId": 14,
+      "AccId": 19,
+      "Balance": 5984929.0,
+      "Status": true
+    },
+    {
+      "ClientId": 16,
+      "AccId": 22,
+      "Balance": 23221.0,
+      "Status": true
+    },
+    {
+      "ClientId": 13,
+      "AccId": 23,
+      "Balance": 324.0,
+      "Status": true
+    },
+    {
+      "ClientId": 13,
+      "AccId": 25,
+      "Balance": 5442.0,
+      "Status": true
+    },
+    {
+      "ClientId": 10,
+      "AccId": 26,
+      "Balance": 234231.0,
+      "Status": true
+    },
+    {
+      "ClientId": 3,
+      "AccId": 28,
+      "Balance": 4333.0,
+      "Status": true
+    },
+    {
+      "ClientId": 2,
+      "AccId": 3,
+      "Balance": 4500.0,
+      "Status": false
+    },
+    {
+      "ClientId": 4,
+      "AccId": 6,
+      "Balance": 20090.0,
+      "Status": true
+    },
+    {
+      "ClientId": 9,
+      "AccId": 12,
+      "Balance": 22330.0,
+      "Status": true
+    },
+    {
+      "ClientId": 5,
+      "AccId": 8,
+      "Balance": 1132.0,
+      "Status": false
+    },
+    {
+      "ClientId": 8,
+      "AccId": 24,
+      "Balance": 23420.0,
+      "Status": true
+    },
+    {
+      "ClientId": 8,
+      "AccId": 11,
+      "Balance": 10658.0,
+      "Status": true
+    },
+    {
+      "ClientId": 12,
+      "AccId": 17,
+      "Balance": 12067.0,
+      "Status": true
+    },
+    {
+      "ClientId": 5,
+      "AccId": 7,
+      "Balance": 313058.0,
+      "Status": true
+    },
+    {
+      "ClientId": 16,
+      "AccId": 21,
+      "Balance": 432209.0,
+      "Status": true
+    },
+    {
+      "ClientId": 7,
+      "AccId": 10,
+      "Balance": 3348.0,
+      "Status": true
+    },
+    {
+      "ClientId": 6,
+      "AccId": 27,
+      "Balance": 6920.0,
+      "Status": true
+    },
+    {
+      "ClientId": 11,
+      "AccId": 15,
+      "Balance": 2088019.0,
+      "Status": true
+    },
+    {
+      "ClientId": 10,
+      "AccId": 14,
+      "Balance": 43231.0,
+      "Status": false
+    },
+    {
+      "ClientId": 3,
+      "AccId": 5,
+      "Balance": 64886.0,
+      "Status": true
+    },
+    {
+      "ClientId": 1,
+      "AccId": 2,
+      "Balance": 42398.0,
+      "Status": true
+    },
+    {
+      "ClientId": 2,
+      "AccId": 4,
+      "Balance": 183000.0,
+      "Status": true
+    },
+    {
+      "ClientId": 15,
+      "AccId": 20,
+      "Balance": 11101.0,
+      "Status": true
+    },
+    {
+      "ClientId": 1,
+      "AccId": 1,
+      "Balance": 32660.0000,
+      "Status": true
+    }
+  ],
+  "Transactions": [
+    {
+      "TranId": 1,
+      "From": 1,
+      "To": 2,
+      "Amount": 1350.0,
+      "Date": "2019-11-01T00:00:00"
+    },
+    {
+      "TranId": 2,
+      "From": 1,
+      "To": 3,
+      "Amount": 900.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 3,
+      "From": 1,
+      "To": 2,
+      "Amount": 800.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 4,
+      "From": 3,
+      "To": 2,
+      "Amount": 200.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 5,
+      "From": 3,
+      "To": 2,
+      "Amount": 200.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 6,
+      "From": 4,
+      "To": 2,
+      "Amount": 500.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 7,
+      "From": 4,
+      "To": 2,
+      "Amount": 500.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 8,
+      "From": 1,
+      "To": 7,
+      "Amount": 500.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 9,
+      "From": 6,
+      "To": 12,
+      "Amount": 1231.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 10,
+      "From": 8,
+      "To": 10,
+      "Amount": 102.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 11,
+      "From": 11,
+      "To": 27,
+      "Amount": 1211.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 12,
+      "From": 11,
+      "To": 24,
+      "Amount": 9.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 13,
+      "From": 11,
+      "To": 10,
+      "Amount": 2122.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 14,
+      "From": 17,
+      "To": 7,
+      "Amount": 244.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 15,
+      "From": 27,
+      "To": 21,
+      "Amount": 56.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 16,
+      "From": 14,
+      "To": 10,
+      "Amount": 1.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 17,
+      "From": 1,
+      "To": 27,
+      "Amount": 321.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    },
+    {
+      "TranId": 18,
+      "From": 15,
+      "To": 14,
+      "Amount": 43222.0,
+      "Date": "2019-12-20T00:00:00+03:00"
+    }
+  ],
+  "Loans": [
+    {
+      "LoanId": 1,
+      "AccId": 2,
+      "Amount": 30000.0,
+      "StartDate": "2019-12-20T00:00:00+03:00",
+      "EndDate": "2020-06-20T00:00:00",
+      "Percent": 8.0,
+      "Status": "Active"
+    },
+    {
+      "LoanId": 2,
+      "AccId": 4,
+      "Amount": 103000.0,
+      "StartDate": "2019-12-20T00:00:00+03:00",
+      "EndDate": "2021-06-25T00:00:00",
+      "Percent": 10.0,
+      "Status": "Active"
+    },
+    {
+      "LoanId": 4,
+      "AccId": 17,
+      "Amount": 300000.0,
+      "StartDate": "2015-10-09T00:00:00+03:00",
+      "EndDate": "2021-06-29T00:00:00",
+      "Percent": 12.0,
+      "Status": "Repaid"
+    },
+    {
+      "LoanId": 3,
+      "AccId": 1,
+      "Amount": 40000.0,
+      "StartDate": "2019-12-20T00:00:00+03:00",
+      "EndDate": "2020-09-25T00:00:00",
+      "Percent": 9.0,
+      "Status": "Active"
+    }
+  ],
+  "Deposits": [
+    {
+      "DepId": 1,
+      "AccId": 20,
+      "Amount": 48000.0,
+      "StartDate": "2019-12-20T00:00:00+03:00",
+      "EndDate": "2020-08-21T00:00:00",
+      "Percent": 6.0,
+      "Status": "Active"
+    },
+    {
+      "DepId": 2,
+      "AccId": 4,
+      "Amount": 30000.0,
+      "StartDate": "2018-01-10T00:00:00+03:00",
+      "EndDate": "2022-12-01T00:00:00",
+      "Percent": 7.0,
+      "Status": "Active"
+    },
+    {
+      "DepId": 3,
+      "AccId": 5,
+      "Amount": 120000.0,
+      "StartDate": "2019-05-14T00:00:00+03:00",
+      "EndDate": "2021-04-26T00:00:00",
+      "Percent": 8.0,
+      "Status": "Active"
+    },
+    {
+      "DepId": 4,
+      "AccId": 6,
+      "Amount": 40000.0,
+      "StartDate": "2019-04-30T00:00:00+03:00",
+      "EndDate": "2020-08-19T00:00:00",
+      "Percent": 6.0,
+      "Status": "Active"
+    },
+    {
+      "DepId": 5,
+      "AccId": 1,
+      "Amount": 54000.0,
+      "StartDate": "2014-12-20T00:00:00+03:00",
+      "EndDate": "2020-02-11T00:00:00",
+      "Percent": 9.0,
+      "Status": "Closed"
+    },
+    {
+      "DepId": 6,
+      "AccId": 1,
+      "Amount": 54000.0,
+      "StartDate": "2019-12-20T00:00:00+03:00",
+      "EndDate": "2029-01-18T00:00:00",
+      "Percent": 7.0,
+      "Status": "Active"
+    }
+  ]
+}

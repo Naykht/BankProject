@@ -42,7 +42,7 @@ namespace banks
         List<Deposit> AccDep(int id);
         void AddDeposit(int id, decimal am, DateTime end, decimal per);
         void StatusDeposit();
-        void CloseDeposit(int id);
+        void CloseDeposit(Deposit d);
     }
     public interface ITransaction
     {
@@ -239,25 +239,35 @@ namespace banks
             }
             SaveData();
         }
-        public void CloseDeposit(int id)
+        public void CloseDeposit(Deposit d)
         {
-            Deposit de = Deposits.First(u => u.DepId == id);
+            Deposit de = Deposits.First(u => u.DepId == d.DepId);
             de.Status = "Closed";
-            Deposits.RemoveAll(u => u.DepId == id);
+            Deposits.RemoveAll(u => u.DepId == d.DepId);
             Deposits.Add(de);
+            int month = MonthDifference(de.StartDate);
+            decimal depAmount = Math.Round(de.Amount * (decimal)Math.Pow((double)de.Percent / 100 + 1, month - 1), 2);
+            Money(d.AccId, depAmount);
             SaveData();
+        }
+        private int MonthDifference(DateTime dat)
+        {
+            int month = (DateTime.Now.Year - dat.Year) * 12 + DateTime.Now.Month - dat.Month;
+            if (DateTime.Now.Day >= dat.Day)
+                month += 1;
+            return month;
         }
         public bool CloseLoan(Loan l)
         {
             Loan lo = Loans.First(u => u.LoanId == l.LoanId);
-            Account acc = Accounts.First(u => u.AccId == l.AccId);       
-            int month = (DateTime.Now.Year - lo.StartDate.Year) * 12 + DateTime.Now.Month - lo.StartDate.Month + 1;
+            Account acc = Accounts.First(u => u.AccId == l.AccId);
+            int month = MonthDifference(lo.StartDate);
             var loanAmount = Math.Round(lo.Amount * (decimal)Math.Pow((double)lo.Percent / 100 + 1, month), 2);
             if (acc.Balance < loanAmount)
                 return false;
             else
             {
-                lo.Status = "Closed";
+                lo.Status = "Repaid";
                 Loans.RemoveAll(u => u.LoanId == l.LoanId);
                 Loans.Add(lo);
                 Money(l.AccId, -loanAmount);

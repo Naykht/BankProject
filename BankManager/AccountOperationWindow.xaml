@@ -9,43 +9,43 @@
     <TabControl Background="CornflowerBlue">
         <TabItem  Background="CornflowerBlue" Header="Transactions">
             <Grid>
-                
-                <DataGrid Name="TranData" Grid.Row="1" AutoGenerateColumns="False">
+
+                <DataGrid Name="TranData" Grid.Row="1" AutoGenerateColumns="False" Background="DeepSkyBlue">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding TranId}"></DataGridTextColumn>
-                        <DataGridTextColumn Width="70" Header="Amount, $" Binding="{Binding Amount}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="To Account, Id" Binding="{Binding To}"></DataGridTextColumn>
-                        <DataGridTextColumn Width="125" Header="Date" Binding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="90" Header="Id" Binding="{Binding TranId}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="120" Header="Amount, $" Binding="{Binding Amount}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="90" Header="To Account, Id" Binding="{Binding To}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="100" Header="Date" Binding="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
         </TabItem>
         <TabItem Background="CornflowerBlue" Header="Loans">
             <Grid>
-                
-                <DataGrid Name="LoanData" Grid.Row="1" AutoGenerateColumns="False">
+
+                <DataGrid Name="LoanData" Grid.Row="1" AutoGenerateColumns="False" Background="DeepSkyBlue">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding LoanId}"></DataGridTextColumn>
-                        <DataGridTextColumn Width="70" Header="Amount, $" Binding="{Binding Amount}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="50" Header="Id" Binding="{Binding LoanId}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="75" Header="Amount, $" Binding="{Binding Amount}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}"></DataGridTextColumn>
                         <DataGridTextColumn Header="End Date" Binding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}"></DataGridTextColumn>
-                        <DataGridTextColumn Width="125" Header="Percent" Binding="{Binding Percent}"></DataGridTextColumn>
-                        <DataGridTextColumn Width="125" Header="Status" Binding="{Binding Status}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="70" Header="Percent" Binding="{Binding Percent}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="75" Header="Status" Binding="{Binding Status}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
         </TabItem>
         <TabItem Background="CornflowerBlue" Header="Deposits">
             <Grid>
-                
-                <DataGrid Name="DepData" Grid.Row="1" AutoGenerateColumns="False">
+
+                <DataGrid Name="DepData" Grid.Row="1" AutoGenerateColumns="False" Background="DeepSkyBlue">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding TranId}"></DataGridTextColumn>
-                        <DataGridTextColumn Width="70" Header="Amount, $" Binding="{Binding Amount}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="50" Header="Id" Binding="{Binding DepId}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="75" Header="Amount, $" Binding="{Binding Amount}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}"></DataGridTextColumn>
                         <DataGridTextColumn Header="End Date" Binding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}"></DataGridTextColumn>
-                        <DataGridTextColumn Width="125" Header="Percent" Binding="{Binding Percent}"></DataGridTextColumn>
-                        <DataGridTextColumn Width="125" Header="Status" Binding="{Binding Status}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="70" Header="Percent" Binding="{Binding Percent}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="75" Header="Status" Binding="{Binding Status}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

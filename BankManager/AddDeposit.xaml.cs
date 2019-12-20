@@ -32,16 +32,18 @@ namespace BankManager
             var en = EndBox.SelectedDate;
             decimal am;
             decimal p;
+            var now = DateTime.Now;
             if (choCl == null)
                 MessageBox.Show("Please choose an account");
             else if (en == null || !decimal.TryParse(amountBox.Text, out am) || !decimal.TryParse(percentBox.Text.Replace(".", ","), out p))
                 MessageBox.Show("Invalid input data");
             else if (choCl.Balance < am)
                 MessageBox.Show("Account has insufficient funds");
+            else if ((en ?? now) < now.AddDays(180))
+                MessageBox.Show("Minimum deposit period is at least 180 days");
             else
             {
                 IDeposit dep = Factory.Instance.GDeposit();
-                var now = DateTime.Now;
                 int accId = choCl.AccId;
                 dep.AddDeposit(accId, am, en ?? now, p);
                 UpdateDeposit?.Invoke();

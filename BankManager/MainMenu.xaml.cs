@@ -32,45 +32,47 @@ namespace BankManager
         }
         public void UpdateList()
         {
-   
+            lo.StatusLoan();
+            dep.StatusDeposit();
             clientList.ItemsSource = null;
             clientList.ItemsSource = cl.Clients;
             accountList.ItemsSource = null;
             accountList.ItemsSource = acc.Accounts;
             loanList.ItemsSource = null;
-            lo.StatusLoan();
             loanList.ItemsSource = lo.Loans;
             depList.ItemsSource = null;
-            dep.StatusDeposit();
             depList.ItemsSource = dep.Deposits;
             tranList.ItemsSource = null;
             tranList.ItemsSource = tr.Transactions;
         }
         public void UpdateCombo()//
         {
-            List<string> sample = new List<string>()
+            choiceLoan.ItemsSource = new List<string>()
             {
                 "All",
                 "Active",
-                "Closed",
+                "Repaid",
                 "Expired"
             };
-            choiceLoan.ItemsSource = sample;
             choiceLoan.SelectedItem = "All";
-            sample.Remove("Expired");
-            choiceDepo.ItemsSource = sample;
+            choiceDepo.ItemsSource = new List<string>()
+            {
+                "All",
+                "Active",
+                "Closed"
+            };
             choiceDepo.SelectedItem = "All";
         }
         private void DateLoan_Click(object sender, RoutedEventArgs e)//
         {
-            var now = DateTime.Now;
             if (lStartBox.SelectedDate != null && lEndBox.SelectedDate != null && lStartBox.SelectedDate < lEndBox.SelectedDate)
             {
+                var now = DateTime.Now;
                 loanList.ItemsSource = null;
                 loanList.ItemsSource = lo.DateLoan(lStartBox.SelectedDate ?? now, lEndBox.SelectedDate ?? now, choiceLoan.SelectedItem as string);
             }
             else
-                MessageBox.Show("Error, incorrect input data");
+                MessageBox.Show("Please select a correct arbitrary period");
         }
         private void ResetLoan_Click(object sender, RoutedEventArgs e)//
         {
@@ -122,7 +124,7 @@ namespace BankManager
                 depList.ItemsSource = dep.DateDep(dStartBox.SelectedDate ?? now, dEndBox.SelectedDate ?? now, choiceDepo.SelectedItem as string);
             }
              else   
-                MessageBox.Show("Please select an arbitrary period");
+                MessageBox.Show("Please select a correct arbitrary period");
         }
         private void ResetDep_Click(object sender, RoutedEventArgs e)
         {
@@ -156,20 +158,22 @@ namespace BankManager
             lo = Factory.Instance.GLoan();
             loanList.ItemsSource = lo.Loans;
         }
-        private void CloseLoan_Click(object sender, RoutedEventArgs e)//
+        private void RepayLoan_Click(object sender, RoutedEventArgs e)//
         {
             var cLo = loanList.SelectedItem as Loan;
             if (cLo == null)
                 MessageBox.Show("Please select a loan");
             else if (cLo.Status == "Expired")
-                MessageBox.Show("You cannot close this loan, because it is expired");
-            else if (cLo.Status == "Closed")
-                MessageBox.Show("This loan is already closed");
+                MessageBox.Show("You cannot repay this loan, because it is expired");
+            else if (cLo.Status == "Repaid")
+                MessageBox.Show("This loan is already repaid");
+            else if (cLo.StartDate.AddDays(180) > DateTime.Now)
+                MessageBox.Show("The minimum loan period (180 days) isn't over, so you can't repay that deposit");
             else 
             {
                 if (lo.CloseLoan(cLo))
                 {
-                    MessageBox.Show("Loan has been closed");
+                    MessageBox.Show("Loan has been repaid");
                     UpdateLoan();
                     UpdateAccount();
                 }
@@ -229,7 +233,7 @@ namespace BankManager
                 tranList.ItemsSource = tr.DateTran(tStartBox.SelectedDate ?? now, tEndBox.SelectedDate ?? now);
             }
             else
-                MessageBox.Show("Incorrect input data");
+                MessageBox.Show("Please select a correct arbitrary period");
             
         }
         private void TranResetButton_Click(object sender, RoutedEventArgs e)
@@ -251,16 +255,15 @@ namespace BankManager
             var closeDe = depList.SelectedItem as Deposit;
             if (closeDe == null)
                 MessageBox.Show("Please select a deposit");
-            else if (closeDe.Status == "Expired")
-                MessageBox.Show("You cannot close this deposit, because it is expired");
             else if (closeDe.Status == "Closed")
                 MessageBox.Show("This deposit is already closed");
-            else if (closeDe.StartDate.AddYears(1) > DateTime.Now)
-                MessageBox.Show("Deposit period isn't over! So you can't close that deposit.");
+            else if (closeDe.StartDate.AddDays(180) > DateTime.Now)
+                MessageBox.Show("The minimum deposit period (180 days) isn't over, so you can't close that deposit");
             else
             {
-                dep.CloseDeposit(closeDe.DepId);
+                dep.CloseDeposit(closeDe);
                 UpdateDep();
+                MessageBox.Show("Deposit has been closed");
             }
         }
         private void AddTran_Click(object sender, RoutedEventArgs e)
@@ -270,7 +273,5 @@ namespace BankManager
             winAddTran.UpdateTran += UpdateAccount;
             winAddTran.Show();
         }
-
-       
     }
 }

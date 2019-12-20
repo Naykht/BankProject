@@ -33,14 +33,16 @@ namespace BankManager
             var en = EndBox.SelectedDate;
             decimal am;
             decimal p;
+            var now = DateTime.Now;
             if (choCl == null)
                 MessageBox.Show("Please choose an account");
-            else if (en == null || !decimal.TryParse(amountBox.Text, out am) || !decimal.TryParse(percentBox.Text.Replace(".",","), out p))
+            else if (en == null || !decimal.TryParse(amountBox.Text, out am) || !decimal.TryParse(percentBox.Text.Replace(".", ","), out p))
                 MessageBox.Show("Invalid input data");
+            else if ((en ?? now) < now.AddDays(180))
+                MessageBox.Show("Minimum loan period is at least 180 days");
             else
             {
                 ILoan lo = Factory.Instance.GLoan();
-                var now = DateTime.Now;
                 int accId = choCl.AccId;
                 lo.AddLoan(accId, am, en ?? now, p);
                 UpdateLoan?.Invoke();

@@ -40,6 +40,6 @@
         <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding ElementName=perSlid, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Name="percentBox" Width="180"></TextBox>
         <Slider Margin="20 10 20 0" Grid.Row="3" Grid.ColumnSpan="2" Maximum="500000" Minimum="30000" TickFrequency="1000" IsSnapToTickEnabled="True" Name="amSlid"/>
         <Button Grid.Row="7" Grid.ColumnSpan="2" Width="150" Height="20" Click="MakeDeposit_Click">Make A Deposit</Button>
-        <Slider Margin="20 10 20 0" Grid.Row="6" Grid.ColumnSpan="2" Maximum="7" Minimum="3" TickFrequency="0.1" IsSnapToTickEnabled="True" Name="perSlid"/>
+        <Slider Margin="20 10 20 0" Grid.Row="6" Grid.ColumnSpan="2" Maximum="7" Minimum="3" TickFrequency="1" IsSnapToTickEnabled="True" Name="perSlid"/>
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankManager"
         mc:Ignorable="d"
-        Title="" Background="CornflowerBlue" Height="400" Width="900">
+        Title="Bank Manager" Background="CornflowerBlue" Height="400" Width="900">
     <TabControl  Background="CornflowerBlue" TabStripPlacement="Left">
         <TabItem   Header="Clients" Height="74">
             <Grid >
@@ -50,11 +50,11 @@
                     </ListView.View>
                 </ListView>
                 <StackPanel Grid.Column="1">
-                    <TextBox Margin="10" Name="SearchAccBox" Width="100"  Background="Beige" ></TextBox>
-                    <Button x:Name="SearchButton" Margin="7" Width="100" Height="50" Click ="SearchButton_Click">Search by Id</Button>
-                    <Button x:Name="ResetButton" Click="ResetAcc_Click" Height="50" Width="100" Margin="10">Reset</Button>
-                    <Button x:Name="AddAccount" Click="AddAccount_Click" Height="50" Width="100" Margin="10 40 10 10">Add Account</Button>
-                    <Button x:Name="ChangeAccountStatus" Click="ChangeAccountStatus_Click" Height="50" Width="100" Margin="10">Change Account Status</Button>
+                    <TextBox Margin="10" Name="SearchAccBox" Width="120"  Background="Beige" ></TextBox>
+                    <Button x:Name="SearchButton" Margin="7" Width="120" Height="50" Click ="SearchButton_Click">Search by Client Id</Button>
+                    <Button x:Name="ResetButton" Click="ResetAcc_Click" Height="50" Width="120" Margin="10">Reset</Button>
+                    <Button x:Name="AddAccount" Click="AddAccount_Click" Height="50" Width="120" Margin="10 40 10 10">Add Account</Button>
+                    <Button x:Name="ChangeAccountStatus" Click="ChangeAccountStatus_Click" Height="50" Width="120" Margin="10">Change Status</Button>
                     
                 </StackPanel>
             </Grid>
@@ -89,7 +89,7 @@
                     <Button Margin="10 10" Click="DateLoan_Click">Execute</Button>
                     <Button Margin="10 1" Click="ResetLoan_Click">Reset</Button>
                     <Button   Click="MakeLoan_Click" Margin="10 30 10 0">Make A Loan</Button>
-                    <Button Margin="10"  Click="CloseLoan_Click">Close A Loan</Button>
+                    <Button Margin="10"  Click="RepayLoan_Click">Close A Loan</Button>
                 </StackPanel>
             </Grid>
         </TabItem>
@@ -118,7 +118,7 @@
                     <DatePicker Name="dStartBox"></DatePicker>
                     <TextBlock Margin="10 5 0 2">End Date</TextBlock>
                     <DatePicker Name="dEndBox"></DatePicker>
-                    <ListView Name="choiceDepo" Height="85" Width="60" Margin="0 10 0 0"></ListView>
+                    <ListView Name="choiceDepo" Height="65" Width="60" Margin="0 15 0 10"></ListView>
                     <Button Margin="10 10" Click="ExecuteDep_Click">Execute</Button>
                     <Button Margin="10 1" Click="ResetDep_Click">Reset</Button>
                     <TextBlock></TextBlock>
