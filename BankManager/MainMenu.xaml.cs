@@ -233,7 +233,7 @@ namespace BankManager
             winAddDep.Show();
         }
 
-        private void CloseDep_Click(object sender, RoutedEventArgs e)
+        private void CloseDep_Click(object sender, RoutedEventArgs e)//kirill
         {
             var closeDe = depList.SelectedItem as Deposit;
             if (closeDe == null)
@@ -242,7 +242,7 @@ namespace BankManager
                 MessageBox.Show("You cannot close this deposit, because it is expired");
             else if (closeDe.Status == "Closed")
                 MessageBox.Show("This deposit is already closed");
-            else if (closeDe.StartDate.AddYears(1) < DateTime.Now)
+            else if (closeDe.StartDate.AddYears(1) > DateTime.Now)
                 MessageBox.Show("Deposit period isn't over! So you can't close that deposit.");
             else
             {
