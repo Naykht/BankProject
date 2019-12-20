@@ -25,7 +25,7 @@ namespace BankManager
         public AddDeposit()
         {
             InitializeComponent();
-            clientCombo.ItemsSource = acc.Accounts;
+            Update();
         }
         private void MakeDeposit_Click(object sender, RoutedEventArgs e)
         {
@@ -50,6 +50,7 @@ namespace BankManager
                 EndBox.SelectedDate = null;
                 clientCombo.SelectedItem = null;
                 MessageBox.Show("You've successfully added a new deposit");
+                Update();
             }
         }
         private void clientCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,6 +60,12 @@ namespace BankManager
                 money.Text = "0";
             else
                 money.Text = choCl.Balance.ToString();
+        }
+
+        public void Update()
+        {
+            acc = Factory.Instance.GAccount();
+            clientCombo.ItemsSource = acc.Accounts;
         }
     }
 }

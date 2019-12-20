@@ -26,8 +26,7 @@ namespace BankManager
         public MakeTransactionWindow()
         {
             InitializeComponent();
-            accSenderCombo.ItemsSource = acc.Accounts;
-            accRecCombo.ItemsSource = acc.Accounts;
+            Update();
         }
         private void ConfrimTranButton_Click(object sender, RoutedEventArgs e)
         {
@@ -49,20 +48,34 @@ namespace BankManager
                 amountBox.Text = "0";
                 accRecCombo.SelectedItem = null;
                 accSenderCombo.SelectedItem = null;
-                
+                Update();
+
             }
         }
         private void accSenderCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             senAcc = accSenderCombo.SelectedItem as Account;
             if (senAcc == null)
                 money.Text = null;
             else
+            {
+                
                 money.Text = senAcc.Balance.ToString();
+            }
+                
         }
         private void accRecCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             recAcc = accRecCombo.SelectedItem as Account;
+        }
+
+        public void Update()
+        {
+            acc = Factory.Instance.GAccount();
+            accSenderCombo.ItemsSource = acc.Accounts;
+            accRecCombo.ItemsSource = acc.Accounts;
+
         }
     }
 }

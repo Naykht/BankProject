@@ -204,8 +204,15 @@ namespace BankManager
         }
         private void ChangeAccountStatus_Click(object sender, RoutedEventArgs e)
         {
-            acc.ChangeAccountStatus(accountList.SelectedItem as Account);
-            UpdateAccount();
+            var acd = accountList.SelectedItem as Account;
+            if (acd != null)
+            {
+                acc.ChangeAccountStatus(acd);
+                UpdateAccount();
+                MessageBox.Show("Status has been changed successfully");
+            }
+            else
+                MessageBox.Show("Please select an account");
         }
         public void UpdateTran()
         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="1000">
+        Title="" Height="250" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

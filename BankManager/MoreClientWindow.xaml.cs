@@ -42,11 +42,13 @@ namespace BankManager
         private void Operations_Click(object sender, RoutedEventArgs e)
         {
             var acd = accList.SelectedItem as Account;
-            if (acc != null)
+            if (acd != null)
             {
                 var tranwin = new AccountOperationWindow(acd);
                 tranwin.Show();
             }
+            else
+                MessageBox.Show("Please select an account");
         }
     }
 }

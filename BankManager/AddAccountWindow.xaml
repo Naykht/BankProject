@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankManager"
         mc:Ignorable="d"
-        Title="AddAccountWindow" Height="240" Width="300">
+        Title="" Height="240" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -19,7 +19,7 @@
         <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">Choose client ID</TextBlock>
         <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">Starting Balance</TextBlock>
         <Button Grid.Row="5" Grid.ColumnSpan="2" Width="150" Height="25" Click="Button_Click">Add Account</Button>
-        <ComboBox Name="clientCombo" Grid.Column="1" Margin="25">
+        <ComboBox Name="clientCombo" Grid.Column="1" Margin="20">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

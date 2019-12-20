@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankManager"
         mc:Ignorable="d"
-        Title="AddClientWindow" Height="290" Width="377">
+        Title="" Height="290" Width="377">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -42,7 +42,7 @@
         <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">Available Amount</TextBlock>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Name="money" Grid.Row="2" Grid.Column="1">0</TextBlock>
         <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">Amount</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="amountBox" Width="160"></TextBox>
+        <TextBox Text="{Binding ElementName =amSlid,Path=Value,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="amountBox" Width="160"></TextBox>
         <Button Name="ConfrimTranButton" Grid.Row="5" Grid.ColumnSpan="2" Width="150" Height="20" Click="ConfrimTranButton_Click" >Confirm Transaction</Button>
         <Slider Margin="20 10 20 0" Maximum="500000" TickFrequency="1" IsSnapToTickEnabled="True" Name="amSlid" Grid.Row="4" Grid.ColumnSpan="2"/>
     </Grid>
