@@ -7,12 +7,11 @@ namespace banks
     {
         static void Main(string[] args)
         {
-            decimal Amount = 100;
-            decimal Percent = (decimal)7.5;
-            decimal a = Amount / Percent;
-            
-            decimal sum = Amount * (1 + (Percent / 100));
-            Console.WriteLine(sum);
+            decimal amount = 30000;
+            decimal per = (decimal)5.5;
+            int month = 10;
+            var loanAmount = Math.Round(amount * (decimal)Math.Pow((double)per / 100 + 1, month), 2);
+            Console.WriteLine(loanAmount);
         }
     }
 }

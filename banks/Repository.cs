@@ -32,7 +32,7 @@ namespace banks
         List<Loan> AccLoan(int id);
         void AddLoan(int id, decimal am, DateTime end, decimal per);
         void StatusLoan();
-        void CloseLoan(int id);
+        bool CloseLoan(Loan l);
 
     }
     public interface IDeposit
@@ -247,13 +247,23 @@ namespace banks
             Deposits.Add(de);
             SaveData();
         }
-        public void CloseLoan(int id)
+        public bool CloseLoan(Loan l)
         {
-            Loan lo = Loans.First(u => u.LoanId == id);
-            lo.Status = "Closed";
-            Loans.RemoveAll(u => u.LoanId == id);
-            Loans.Add(lo);
-            SaveData();
+            Loan lo = Loans.First(u => u.LoanId == l.LoanId);
+            Account acc = Accounts.First(u => u.AccId == l.AccId);       
+            int month = (DateTime.Now.Year - lo.StartDate.Year) * 12 + DateTime.Now.Month - lo.StartDate.Month + 1;
+            var loanAmount = Math.Round(lo.Amount * (decimal)Math.Pow((double)lo.Percent / 100 + 1, month), 2);
+            if (acc.Balance < loanAmount)
+                return false;
+            else
+            {
+                lo.Status = "Closed";
+                Loans.RemoveAll(u => u.LoanId == l.LoanId);
+                Loans.Add(lo);
+                Money(l.AccId, -loanAmount);
+                SaveData();
+                return true;
+            }    
         }
         public void Money(int id, decimal amount)
         {

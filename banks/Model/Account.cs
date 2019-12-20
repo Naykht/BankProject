@@ -7,8 +7,9 @@ namespace banks.Model
     public class Account
     {
         public int ClientId { get; set; }
-        public int AccId { get; set; } 
+        public int AccId { get; set; }
         public decimal Balance { get; set; }
-        public bool Status { get; set; } 
+        public bool Status { get; set; }
     }
 }
+

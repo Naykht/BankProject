@@ -158,17 +158,23 @@ namespace BankManager
         }
         private void CloseLoan_Click(object sender, RoutedEventArgs e)//
         {
-            var closeLo = loanList.SelectedItem as Loan;
-            if (closeLo == null)
+            var cLo = loanList.SelectedItem as Loan;
+            if (cLo == null)
                 MessageBox.Show("Please select a loan");
-            else if (closeLo.Status == "Expired")
+            else if (cLo.Status == "Expired")
                 MessageBox.Show("You cannot close this loan, because it is expired");
-            else if (closeLo.Status == "Closed")
+            else if (cLo.Status == "Closed")
                 MessageBox.Show("This loan is already closed");
             else 
             {
-                lo.CloseLoan(closeLo.LoanId);
-                UpdateLoan();
+                if (lo.CloseLoan(cLo))
+                {
+                    MessageBox.Show("Loan has been closed");
+                    UpdateLoan();
+                    UpdateAccount();
+                }
+                else
+                    MessageBox.Show("Account has insufficient funds");
             }
         }
         public void UpdateAccount()//
